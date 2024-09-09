@@ -11,6 +11,8 @@ class FormEstudianteProvider with ChangeNotifier{
     String _primerApellido    = '';
     String _segundoApellido   = '';
     String _cui               = '';
+    String _grado             = '';
+    String _seccion           = '';
 
     String get primerNombre => _primerNombre;
 
@@ -53,14 +55,28 @@ class FormEstudianteProvider with ChangeNotifier{
 
     }
 
+    String get seccion => _seccion;
+
+    set seccion(String value) {
+      _seccion = value;
+    }
+
+    String get grado => _grado;
+
+    set grado(String value) {
+      _grado = value;
+    }
 
     Estudiante crearEstudainte(){
         return Estudiante(  primerNombre    : _primerNombre,
                             segundoNombre   : _segundoNombre,
                             primerApellido  : _primerApellido,
                             segundoApellido : _segundoApellido,
-                            cui: cui
+                            cui             : _cui,
+                            grado           : _grado,
+                            seccion         : _seccion
                         );
     }
 
-}
+
+  }
