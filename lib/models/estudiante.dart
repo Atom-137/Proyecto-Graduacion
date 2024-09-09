@@ -1,4 +1,5 @@
 class Estudiante{
+
     String primerNombre;
     String segundoNombre;
     String primerApellido;

@@ -1,4 +1,5 @@
 import 'package:app_notas_v2/providers/form_providers/form_estudiante_provider.dart';
+import 'package:app_notas_v2/widgets/boton_guardar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,7 +43,7 @@ class _FormRegistroEstudiante extends StatelessWidget {
                     },
                     onChange: ( valor ) { formProvider.primerNombre = valor; },
                   ),
-                SizedBox( height: 10),
+                const SizedBox( height: 10),
                 InputWidget(
                     labelText : "Primer Nombre",
                     hintText  : "Ingrese el Primer Nombre",
@@ -55,7 +56,7 @@ class _FormRegistroEstudiante extends StatelessWidget {
                     },
                     onChange: ( valor ) { formProvider.primerNombre = valor; },
                   ),
-                SizedBox( height: 10),
+                const SizedBox( height: 10),
                 InputWidget(
                      labelText : "Segundo Nombre",
                      hintText  : "Ingrese el Segundo Nombre",
@@ -66,7 +67,7 @@ class _FormRegistroEstudiante extends StatelessWidget {
                      },
                      onChange: ( valor ) { formProvider.segundoNombre = valor; },
                   ),
-                SizedBox( height: 10),
+                const SizedBox( height: 10),
                 InputWidget(
                   labelText : "Primer Apellido",
                   hintText  : "Ingrese el Primer Apellido",
@@ -77,7 +78,7 @@ class _FormRegistroEstudiante extends StatelessWidget {
                   },
                   onChange: ( valor ) { formProvider.primerApellido = valor; },
                 ),
-                SizedBox( height: 10),
+                const SizedBox( height: 10),
                 InputWidget(
                   labelText : "Segundo Apellido",
                   hintText  :  "Ingrese el Segundo Apellido",
@@ -88,7 +89,7 @@ class _FormRegistroEstudiante extends StatelessWidget {
                   },
                   onChange: ( valor ) { formProvider.segundoApellido = valor; },
                 ),
-                SizedBox( height: 10),
+                const SizedBox( height: 10),
                 InputWidget(
                   labelText : "Grado",
                   hintText  : "Ingrese el Grado del estudiante",
@@ -99,7 +100,7 @@ class _FormRegistroEstudiante extends StatelessWidget {
                   },
                   onChange: ( valor ) { formProvider.grado = valor; },
                 ),
-                SizedBox( height: 10),
+                const SizedBox( height: 10),
                 InputWidget(
                   labelText : "Seccion",
                   hintText  : "Ingrese la seccion del Eestudiantew",
@@ -109,7 +110,15 @@ class _FormRegistroEstudiante extends StatelessWidget {
                     return "PRUEBA ";
                   },
                   onChange: ( valor ) { formProvider.seccion = valor; },
-                )
+                ),
+                BotonGuardarWidget(
+                    formKey     : formProvider.formKey,
+                    tituloBoton : 'Guardar Estudiante',
+                    fnGuardar: ( ) {
+                        print( "valor de form en guardar");
+                        print( formProvider.obtenerDatosEstudiante() );
+                      }
+                    )
               ],
             ),
           ),

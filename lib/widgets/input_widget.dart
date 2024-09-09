@@ -11,8 +11,8 @@ class InputWidget extends StatelessWidget {
   final void Function(  String ) onChange;
 
 
-  InputWidget({
-    Key? key,
+  const InputWidget({
+    super.key,
     required this.labelText,
     required this.hintText,
     required this.validacion,
@@ -21,7 +21,7 @@ class InputWidget extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.icon
 
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class InputWidget extends StatelessWidget {
         labelText: labelText,
         hintText: hintText,
         prefixIcon: icon != null ? Icon(icon) : null,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
       validator:  validacion,
       onChanged: onChange,

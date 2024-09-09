@@ -59,12 +59,27 @@ class FormEstudianteProvider with ChangeNotifier{
 
     set seccion(String value) {
       _seccion = value;
+      notifyListeners();
     }
 
     String get grado => _grado;
 
     set grado(String value) {
       _grado = value;
+      notifyListeners();
+    }
+
+
+    Map<String, String> obtenerDatosEstudiante(){
+      return {
+        'primerNombre'    : _primerNombre,
+        'segundoNombre'   : _segundoNombre,
+        'primerApellido'  : _primerApellido,
+        'segundoApellido' : _segundoApellido,
+        'cui'             : _cui,
+        'grado'           : _grado,
+        'seccion'         : _seccion
+      };
     }
 
     Estudiante crearEstudainte(){
