@@ -50,12 +50,11 @@ class FormEstudianteProvider with ChangeNotifier{
     }
 
     bool validarForm(){
-
        return formKey.currentState?.validate() ?? false;
-
     }
 
     String get seccion => _seccion;
+
 
     set seccion(String value) {
       _seccion = value;
