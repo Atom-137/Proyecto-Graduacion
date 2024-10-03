@@ -1,6 +1,8 @@
+import 'package:app_notas_v2/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/models.dart';
+import 'widgets.dart';
 
 class FormDynamicWidget extends StatefulWidget {
 
@@ -17,15 +19,14 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
   @override
   Widget build(BuildContext context) {
 
-    final formProvider                      = Provider.of<FormDinamicoProvider>(context);
-    final FormularioDinamico formularioAux  = FormularioDinamico.fromJson( widget.formAux ) ;
-    final DropdownModel      dropdown       = DropdownModel(label: 'Prueba 1', isChecked: false);
+    final formProvider                      = Provider.of<FormdynamicProvider>(context);
+    final FormDynamic formularioAux         = FormDynamic.fromJson( widget.formAux ) ;
 
     formProvider.crearForm(hashForm: formularioAux.hash);
 
     return Form(
         child : Column(
-            children: formularioAux.lstCampos.map<Widget>((ElementoForm elementoForm){
+            children: formularioAux.lstCampos.map<Widget>((ElementformModel elementoForm){
                               if( elementoForm.tipoEleForm == 'texto'){
                                 return Column( children: [
                                     SizedBox( height:  20),
@@ -59,7 +60,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                 return Column(
                                     children: [
                                       SizedBox( height:  20 ),
-                                      CheckboxFormdinamicoWidget( labelCheckbox  : elementoForm.label,
+                                      CheckBoxDynamicWidget( labelCheckbox  : elementoForm.label,
                                                                    hash           : formularioAux.hash,
                                                                    campo          : elementoForm.name)
                                 ]);
@@ -70,7 +71,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                   return Column(
                                       children : [
                                         SizedBox( height: 20 ),
-                                        RadiobuttonFormdinamicoWidget( label    : elementoForm.label,
+                                        RadioButtonDynamicWidget( label    : elementoForm.label,
                                                                        hash     : formularioAux.hash,
                                                                        campo    : elementoForm.name,
                                                                        lstDatos : lstCampos)]);
@@ -80,7 +81,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                   return Column(
                                     children: [
                                       SizedBox( height: 20 ),
-                                      SliderFormdinamicoWidget( label : elementoForm.label,
+                                      SliderFormDynamicWidget( label : elementoForm.label,
                                                                 hash  : formularioAux.hash,
                                                                 campo : elementoForm.name)
                                   ]);
