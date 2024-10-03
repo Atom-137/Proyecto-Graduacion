@@ -1,0 +1,156 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/models.dart';
+
+class FormDynamicWidget extends StatefulWidget {
+
+  final Map<String, dynamic> formAux;
+
+  const FormDynamicWidget( this.formAux, {super.key});
+
+  @override
+  State<FormDynamicWidget> createState() => _FormDynamicWidgetState();
+}
+
+class _FormDynamicWidgetState extends State<FormDynamicWidget> {
+
+  @override
+  Widget build(BuildContext context) {
+
+    final formProvider                      = Provider.of<FormDinamicoProvider>(context);
+    final FormularioDinamico formularioAux  = FormularioDinamico.fromJson( widget.formAux ) ;
+    final DropdownModel      dropdown       = DropdownModel(label: 'Prueba 1', isChecked: false);
+
+    formProvider.crearForm(hashForm: formularioAux.hash);
+
+    return Form(
+        child : Column(
+            children: formularioAux.lstCampos.map<Widget>((ElementoForm elementoForm){
+                              if( elementoForm.tipoEleForm == 'texto'){
+                                return Column( children: [
+                                    SizedBox( height:  20),
+                                    TextFormField( onChanged  : (value) => formProvider.asignarControlador( hashForm : formularioAux.hash,
+                                                                                                            campo    : elementoForm.name,
+                                                                                                            valor    : value),
+                                                   decoration : InputDecoration( hintText  : elementoForm.hintText,
+                                                                                 labelText : elementoForm.label),
+                                                   keyboardType : elementoForm.keyboarType
+                                    )
+                                ]);
+                              }
+                              else if( elementoForm.tipoEleForm == 'dropdown'){
+                                return Column(
+                                  children:[  SizedBox( height: 20),
+                                              DropdownButtonFormField<String>(
+                                                  items: ['Masculino', 'Femenino']
+                                                             .map((label) => DropdownMenuItem( child: Text(label),
+                                                                                               value: label,
+                                                                                                )).toList(),
+                                                  onChanged: (value) {
+                                                    formProvider.asignarControlador( hashForm : formularioAux.hash,
+                                                        campo    : elementoForm.name,
+                                                        valor    : value);
+                                                  }
+                                                )
+                                  ]
+                                );;
+
+                              }else if ( elementoForm.tipoEleForm == 'checkbox'){
+                                return Column(
+                                    children: [
+                                      SizedBox( height:  20 ),
+                                      CheckboxFormdinamicoWidget( labelCheckbox  : elementoForm.label,
+                                                                   hash           : formularioAux.hash,
+                                                                   campo          : elementoForm.name)
+                                ]);
+                              }else if( elementoForm.tipoEleForm == 'radioButton'){
+
+                                  final lstCampos = ['Opcion 1', 'Opcion 2', 'Opcion 3 xd'];
+
+                                  return Column(
+                                      children : [
+                                        SizedBox( height: 20 ),
+                                        RadiobuttonFormdinamicoWidget( label    : elementoForm.label,
+                                                                       hash     : formularioAux.hash,
+                                                                       campo    : elementoForm.name,
+                                                                       lstDatos : lstCampos)]);
+
+                              }else if( elementoForm.tipoEleForm == 'slider'){
+
+                                  return Column(
+                                    children: [
+                                      SizedBox( height: 20 ),
+                                      SliderFormdinamicoWidget( label : elementoForm.label,
+                                                                hash  : formularioAux.hash,
+                                                                campo : elementoForm.name)
+                                  ]);
+
+                              }else if ( elementoForm.tipoEleForm == 'fecha'){
+                                return Column(
+                                  children: [
+                                    SizedBox( height: 20 ),
+                                    ElevatedButton(
+                                      child: Text('Seleccionar fecha'),
+                                      onPressed: () async {
+                                        DateTime? fechas = await showDatePicker(
+                                          context     : context,
+                                          initialDate : DateTime.now(),
+                                          firstDate   : DateTime(2000),
+                                          lastDate    : DateTime(2101)
+                                        );
+
+                                        formProvider.asignarControlador( hashForm : formularioAux.hash,
+                                                                         campo    : elementoForm.name,
+                                                                         valor    : fechas);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              }else if ( elementoForm.tipoEleForm  == 'hora'){
+                                return Column(
+                                  children: [
+                                    SizedBox( height: 20 ),
+                                    ElevatedButton(
+                                      child: Text('Seleccionar hora'),
+                                      onPressed: () async {
+                                        TimeOfDay? hora = await showTimePicker(
+                                          context: context,
+                                          initialTime: TimeOfDay.now(),
+                                        );
+
+                                        formProvider.asignarControlador( hashForm : formularioAux.hash,
+                                                                         campo    : elementoForm.name,
+                                                                         valor    : hora);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              }
+                              else if( elementoForm.tipoEleForm == 'botonGuardar'){
+                                  return Column(
+                                    children: [
+                                      SizedBox( height:  20 ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                           print(formProvider.obtenerDatos( hashForm: formularioAux.hash ));
+
+                                           ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(content: Text('Formulario guardado')),
+                                          );
+                                        },
+                                        child: Text('Guardar Formulario'),
+                                      ),
+                                    ],
+                                  );
+                              }
+                              else{
+                                return Text('Campos formulario no validos');
+                              }
+
+                          }
+                        ).toList()
+        )
+    );;
+  }
+}
+
