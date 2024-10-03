@@ -29,12 +29,12 @@ class _RadioButtonDynamicWidget extends State<RadioButtonDynamicWidget> {
   @override
   Widget build(BuildContext context) {
 
-    final List<String> _lstDatos = widget.lstDatos;
+    final List<String> lstDatos = widget.lstDatos;
     final formProvider = Provider.of<FormdynamicProvider>(context);
 
     return Column(
       children: [
-        ..._lstDatos.map((option) =>
+        ...lstDatos.map((option) =>
             RadioListTile<String>(
               title: Text(option),
               value: option,

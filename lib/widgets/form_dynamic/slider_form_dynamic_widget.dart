@@ -46,10 +46,10 @@ class _SliderFormDynamicWidgetState extends State<SliderFormDynamicWidget> {
             });
           },
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
           'Valor del Slider: ${_currentSliderValue.round()}',
-          style: TextStyle(fontSize: 18),
+          style: const TextStyle(fontSize: 18),
         ),
       ],
     );

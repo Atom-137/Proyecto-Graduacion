@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 
-class FormdynamicProvider with ChangeNotifier{
+class FormdynamicProvider with ChangeNotifier {
 
-  List<Map<String, dynamic>>   _lstForms = [];
-  List<Map< String, dynamic>> lstCampos  = [];
+  final List<Map<String, dynamic>> _lstForms = [];
+  List<Map<String, dynamic>> lstCampos = [];
 
 
   List<Map<String, dynamic>> get lstForms => _lstForms;
 
-  void crearForm( { required String hashForm }){
-
+  void crearForm({ required String hashForm }) {
     Map<String, dynamic> nuevoFormulario = {
       "hashForm": hashForm,
       "lstCampos": []
@@ -18,18 +17,16 @@ class FormdynamicProvider with ChangeNotifier{
 
     if (!_lstForms.any((form) => form['hash'] == hashForm)) {
       _lstForms.add(nuevoFormulario);
-
+    }
   }
-
   Future<void> asignarControlador({ required String hashForm,
     required String campo,
     required dynamic valor}) async {
-
     //ENCONTRAR EL FORMULARIO AL QUE SE VA A INGRESAR LOS DATOS
 
     final formulario = lstForms.firstWhere(
           (form) => form["hashForm"] == hashForm,
-      orElse: () =>  {"hashForm": hashForm, "lstCampos": []},
+      orElse: () => {"hashForm": hashForm, "lstCampos": []},
     );
 
     //ASIGNAR LOS DATOS
@@ -50,16 +47,12 @@ class FormdynamicProvider with ChangeNotifier{
   }
 
 
-
-  Map<String, dynamic> obtenerDatos ( {required String hashForm} ) {
-
+  Map<String, dynamic> obtenerDatos({required String hashForm}) {
     final formulario = lstForms.firstWhere(
           (form) => form["hashForm"] == hashForm,
-      orElse: () =>  {"hashForm": hashForm, "lstCampos": []},
+      orElse: () => {"hashForm": hashForm, "lstCampos": []},
     );
     return formulario;
   }
-
-
 }
 

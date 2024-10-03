@@ -29,7 +29,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
             children: formularioAux.lstCampos.map<Widget>((ElementformModel elementoForm){
                               if( elementoForm.tipoEleForm == 'texto'){
                                 return Column( children: [
-                                    SizedBox( height:  20),
+                                    const SizedBox( height:  20),
                                     TextFormField( onChanged  : (value) => formProvider.asignarControlador( hashForm : formularioAux.hash,
                                                                                                             campo    : elementoForm.name,
                                                                                                             valor    : value),
@@ -41,12 +41,12 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                               }
                               else if( elementoForm.tipoEleForm == 'dropdown'){
                                 return Column(
-                                  children:[  SizedBox( height: 20),
+                                  children:[  const SizedBox( height: 20),
                                               DropdownButtonFormField<String>(
                                                   items: ['Masculino', 'Femenino']
-                                                             .map((label) => DropdownMenuItem( child: Text(label),
-                                                                                               value: label,
-                                                                                                )).toList(),
+                                                             .map((label) => DropdownMenuItem( value: label,
+                                                                                               child: Text(label)
+                                                                                             )).toList(),
                                                   onChanged: (value) {
                                                     formProvider.asignarControlador( hashForm : formularioAux.hash,
                                                         campo    : elementoForm.name,
@@ -54,12 +54,12 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                                   }
                                                 )
                                   ]
-                                );;
+                                );
 
                               }else if ( elementoForm.tipoEleForm == 'checkbox'){
                                 return Column(
                                     children: [
-                                      SizedBox( height:  20 ),
+                                      const SizedBox( height:  20 ),
                                       CheckBoxDynamicWidget( labelCheckbox  : elementoForm.label,
                                                                    hash           : formularioAux.hash,
                                                                    campo          : elementoForm.name)
@@ -70,7 +70,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
 
                                   return Column(
                                       children : [
-                                        SizedBox( height: 20 ),
+                                        const SizedBox( height: 20 ),
                                         RadioButtonDynamicWidget( label    : elementoForm.label,
                                                                        hash     : formularioAux.hash,
                                                                        campo    : elementoForm.name,
@@ -80,7 +80,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
 
                                   return Column(
                                     children: [
-                                      SizedBox( height: 20 ),
+                                      const SizedBox( height: 20 ),
                                       SliderFormDynamicWidget( label : elementoForm.label,
                                                                 hash  : formularioAux.hash,
                                                                 campo : elementoForm.name)
@@ -89,9 +89,9 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                               }else if ( elementoForm.tipoEleForm == 'fecha'){
                                 return Column(
                                   children: [
-                                    SizedBox( height: 20 ),
+                                    const SizedBox( height: 20 ),
                                     ElevatedButton(
-                                      child: Text('Seleccionar fecha'),
+                                      child: const Text('Seleccionar fecha'),
                                       onPressed: () async {
                                         DateTime? fechas = await showDatePicker(
                                           context     : context,
@@ -110,9 +110,9 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                               }else if ( elementoForm.tipoEleForm  == 'hora'){
                                 return Column(
                                   children: [
-                                    SizedBox( height: 20 ),
+                                    const SizedBox( height: 20 ),
                                     ElevatedButton(
-                                      child: Text('Seleccionar hora'),
+                                      child: const Text('Seleccionar hora'),
                                       onPressed: () async {
                                         TimeOfDay? hora = await showTimePicker(
                                           context: context,
@@ -130,7 +130,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                               else if( elementoForm.tipoEleForm == 'botonGuardar'){
                                   return Column(
                                     children: [
-                                      SizedBox( height:  20 ),
+                                      const SizedBox( height:  20 ),
                                       ElevatedButton(
                                         onPressed: () {
                                            elementoForm.callback!();
@@ -141,13 +141,13 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                   );
                               }
                               else{
-                                return Text('Campos formulario no validos');
+                                return const Text('Campos formulario no validos');
                               }
 
                           }
                         ).toList()
         )
-    );;
+    );
   }
 }
 

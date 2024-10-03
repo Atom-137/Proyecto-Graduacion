@@ -1,15 +1,10 @@
-import 'dart:convert';
-
-import 'package:app_notas_v2/models/models.dart';
 import 'package:app_notas_v2/providers/providers.dart';
 import 'package:app_notas_v2/shared/services/form_dynamic_service.dart';
 
-import 'package:app_notas_v2/widgets/boton_guardar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../shared/services/services.dart';
-import '../widgets/widgets.dart';
 
 class RegistroEstudianteScreen extends StatelessWidget {
   const RegistroEstudianteScreen({super.key});
@@ -28,7 +23,7 @@ class _FormRegistroEstudiante extends StatelessWidget {
     final FormdynamicProvider formDynamicProvider = Provider.of<FormdynamicProvider>(context);
     final FormDynamicService formDynamicServide   = FormDynamicService();
     final query = QueryService();
-    final form  = 'registrarEstudiante';
+    const form  = 'registrarEstudiante';
 
     return Scaffold(
       appBar: AppBar( title: const Text('Registro de Estudiante')),

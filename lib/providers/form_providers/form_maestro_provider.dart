@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:app_notas_v2/models/maestro.dart';
 import 'package:flutter/material.dart';
 

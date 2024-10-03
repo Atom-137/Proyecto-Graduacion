@@ -9,7 +9,7 @@ class CheckBoxDynamicWidget extends StatefulWidget {
   final String hash;
   final String campo;
 
-  CheckBoxDynamicWidget({ required this.labelCheckbox, required this.hash, required this.campo });
+  const CheckBoxDynamicWidget({super.key,  required this.labelCheckbox, required this.hash, required this.campo });
 
   @override
   State<CheckBoxDynamicWidget> createState() => _CheckBoxDynamicWidget();
