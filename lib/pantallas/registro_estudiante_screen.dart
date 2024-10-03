@@ -28,15 +28,24 @@ class _FormRegistroEstudiante extends StatelessWidget {
     final FormdynamicProvider formDynamicProvider = Provider.of<FormdynamicProvider>(context);
     final FormDynamicService formDynamicServide   = FormDynamicService();
     final query = QueryService();
+    final form  = 'registrarEstudiante';
 
     return Scaffold(
       appBar: AppBar( title: const Text('Registro de Estudiante')),
       body  : SingleChildScrollView(
         child: Center(
           child: Column( children: [
-            formDynamicServide.obtenerFormulario('registrarEstudiante')]),
-        )
-      ),
+            formDynamicServide.obtenerFormulario(form, (){
+
+                      print(' obtener datos de formulario dinamico en form');
+                      print(formDynamicProvider.obtenerDatos( hashForm: form  ));
+
+                  }
+              )
+            ],
+          )
+        ),
+      )
     );
 
  }

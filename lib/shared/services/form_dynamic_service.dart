@@ -6,7 +6,7 @@ import '../../widgets/widgets.dart';
 
 class FormDynamicService {
 
-  Widget obtenerFormulario( String tipo ){
+  Widget obtenerFormulario( String tipo, [Function? callback] ){
 
     Map <String, dynamic>  formAux = {};
 
@@ -27,7 +27,7 @@ class FormDynamicService {
           ElementformModel(
               tipoEleForm  : 'texto',
               name         : "primerNombre",
-              label        : "Nombre",
+              label        : "Primer Nombre",
               validaciones : [],
               disabled     : false,
               hintText     : 'Ingrese el Primer Nombre',
@@ -35,7 +35,7 @@ class FormDynamicService {
            ElementformModel(
               tipoEleForm  : 'texto',
               name         : "segundoNombre",
-              label        : "Nombre",
+              label        : "Segundo Nombre",
               validaciones : [],
               disabled     : false,
               hintText     : 'Ingrese el Segundo Nombre',
@@ -43,7 +43,7 @@ class FormDynamicService {
            ElementformModel(
               tipoEleForm  : 'texto',
               name         : "primerApellido",
-              label        : "Nombre",
+              label        : "Primer Apellido",
               validaciones : [],
               disabled     : false,
               hintText     : 'Ingrese el Primer Apellido',
@@ -51,7 +51,7 @@ class FormDynamicService {
            ElementformModel(
               tipoEleForm  : 'texto',
               name         : "segundoApellido",
-              label        : "Nombre",
+              label        : "Segundo Apellido",
               validaciones : [],
               disabled     : false,
               hintText     : 'Ingrese el Segundo Apellido',
@@ -59,7 +59,7 @@ class FormDynamicService {
            ElementformModel(
               tipoEleForm  : 'texto',
               name         : "grado",
-              label        : "Nombre",
+              label        : "Grado Estudiante",
               validaciones : [],
               disabled     : false,
               hintText     : 'Ingrese el Grado del Estudiante',
@@ -67,7 +67,7 @@ class FormDynamicService {
            ElementformModel(
               tipoEleForm  : 'texto',
               name         : "user",
-              label        : "Nombre",
+              label        : "Usuario Estudiante",
               validaciones : [],
               disabled     : false,
               hintText     : 'Ingrese el Usuario del Estudiante',
@@ -75,9 +75,10 @@ class FormDynamicService {
           ElementformModel(
               tipoEleForm  : 'botonGuardar',
               name         : "botonGuardar",
-              label        : "Guardar",
+              label        : "Guardar Estudiante",
               disabled     : false,
-              hintText     : 'Guardar Formulario',
+              hintText     : 'Guardar Estudiante',
+              callback     : callback,
               requerido    : true,
               validaciones : [])
         ],

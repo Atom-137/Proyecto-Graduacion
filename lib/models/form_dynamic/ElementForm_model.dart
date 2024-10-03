@@ -18,7 +18,7 @@ class ElementformModel {
   String?                 idList;
   String?                 nomList;
   TextInputType?          keyboarType;
-
+  Function?               callback;
 
   ElementformModel({
     required this.name,
@@ -34,7 +34,8 @@ class ElementformModel {
     this.obscureText,
     this.idList = "id",
     this.nomList = "nombres",
-    this.keyboarType
+    this.keyboarType,
+    this.callback
   });
 
   factory ElementformModel.fromRawJson(String str) => ElementformModel.fromJson(json.decode(str));
@@ -53,7 +54,8 @@ class ElementformModel {
       idList         : json['idList'] ?? "",
       nomList        : json['nomList'] ?? "",
       tipoEleForm    : json['tipoEleForm'],
-      keyboarType    : json["keyboarType"]
+      keyboarType    : json["keyboarType"],
+      callback       : json["callback"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -67,7 +69,8 @@ class ElementformModel {
     "icon"            : icon,
     "hintText"        : hintText,
     "obscureText"     : obscureText,
-    "keyboarType"     : keyboarType
-  };
+    "keyboarType"     : keyboarType,
+    "callback"        : callback
+   };
 
 }

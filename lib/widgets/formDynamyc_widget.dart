@@ -133,13 +133,9 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                       SizedBox( height:  20 ),
                                       ElevatedButton(
                                         onPressed: () {
-                                           print(formProvider.obtenerDatos( hashForm: formularioAux.hash ));
-
-                                           ScaffoldMessenger.of(context).showSnackBar(
-                                            SnackBar(content: Text('Formulario guardado')),
-                                          );
+                                           elementoForm.callback!();
                                         },
-                                        child: Text('Guardar Formulario'),
+                                        child: Text(elementoForm.label),
                                       ),
                                     ],
                                   );

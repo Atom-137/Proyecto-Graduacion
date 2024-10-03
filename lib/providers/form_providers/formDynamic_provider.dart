@@ -10,11 +10,15 @@ class FormdynamicProvider with ChangeNotifier{
   List<Map<String, dynamic>> get lstForms => _lstForms;
 
   void crearForm( { required String hashForm }){
+
     Map<String, dynamic> nuevoFormulario = {
       "hashForm": hashForm,
       "lstCampos": []
     };
-    _lstForms.add(nuevoFormulario);
+
+    if (!_lstForms.any((form) => form['hash'] == hashForm)) {
+      _lstForms.add(nuevoFormulario);
+
   }
 
   Future<void> asignarControlador({ required String hashForm,
