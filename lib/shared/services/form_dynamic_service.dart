@@ -23,6 +23,8 @@ class FormDynamicService {
               validaciones : [],
               disabled     : false,
               hintText     : 'Ingrese el CUI',
+              keyboarType  : TextInputType.number,
+              maxLength    : 13,
               requerido    : true),
           ElementformModel(
               tipoEleForm  : 'texto',
@@ -60,6 +62,14 @@ class FormDynamicService {
               tipoEleForm  : 'texto',
               name         : "grado",
               label        : "Grado Estudiante",
+              validaciones : [],
+              disabled     : false,
+              hintText     : 'Ingrese el Grado del Estudiante',
+              requerido    : true),
+          ElementformModel(
+              tipoEleForm  : 'texto',
+              name         : "seccion",
+              label        : "Seccion Estudiante",
               validaciones : [],
               disabled     : false,
               hintText     : 'Ingrese el Grado del Estudiante',

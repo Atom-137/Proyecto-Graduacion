@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 
 class FormdynamicProvider with ChangeNotifier {
 
-  final List<Map<String, dynamic>> _lstForms = [];
-  List<Map<String, dynamic>> lstCampos = [];
+  final List<Map<String, dynamic>> _lstForms  = [];
+  Map<String, dynamic>              campos = {};
 
 
   List<Map<String, dynamic>> get lstForms => _lstForms;
@@ -12,7 +14,7 @@ class FormdynamicProvider with ChangeNotifier {
   void crearForm({ required String hashForm }) {
     Map<String, dynamic> nuevoFormulario = {
       "hashForm": hashForm,
-      "lstCampos": []
+      "campos": {}
     };
 
     if (!_lstForms.any((form) => form['hash'] == hashForm)) {
@@ -22,37 +24,25 @@ class FormdynamicProvider with ChangeNotifier {
   Future<void> asignarControlador({ required String hashForm,
     required String campo,
     required dynamic valor}) async {
-    //ENCONTRAR EL FORMULARIO AL QUE SE VA A INGRESAR LOS DATOS
 
     final formulario = lstForms.firstWhere(
           (form) => form["hashForm"] == hashForm,
-      orElse: () => {"hashForm": hashForm, "lstCampos": []},
+      orElse: () => {"hashForm": hashForm, "campos": {}},
     );
 
     //ASIGNAR LOS DATOS
-    bool campoExiste = false;
-
-    for (var campoExistente in formulario["lstCampos"]) {
-      if (campoExistente.containsKey(campo)) {
-        campoExistente[campo] = valor;
-        campoExiste = true;
-        break;
-      }
-    }
-    if (!campoExiste) {
-      formulario["lstCampos"].add({campo: valor});
-    }
+    formulario['campos'][campo] = valor;
 
     notifyListeners();
   }
 
 
-  Map<String, dynamic> obtenerDatos({required String hashForm}) {
+  String obtenerDatos({required String hashForm}) {
     final formulario = lstForms.firstWhere(
           (form) => form["hashForm"] == hashForm,
-      orElse: () => {"hashForm": hashForm, "lstCampos": []},
+          orElse: () => {"hashForm": hashForm, "lstCampos": []},
     );
-    return formulario;
+    return  jsonEncode(formulario);
   }
 }
 

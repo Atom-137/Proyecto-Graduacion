@@ -35,7 +35,8 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                                                                                             valor    : value),
                                                    decoration : InputDecoration( hintText  : elementoForm.hintText,
                                                                                  labelText : elementoForm.label),
-                                                   keyboardType : elementoForm.keyboarType
+                                                   keyboardType : elementoForm.keyboarType,
+                                                   maxLength    : elementoForm.maxLength,
                                     )
                                 ]);
                               }
@@ -81,7 +82,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                   return Column(
                                     children: [
                                       const SizedBox( height: 20 ),
-                                      SliderFormDynamicWidget( label : elementoForm.label,
+                                      SliderFormDynamicWidget( label  : elementoForm.label,
                                                                 hash  : formularioAux.hash,
                                                                 campo : elementoForm.name)
                                   ]);

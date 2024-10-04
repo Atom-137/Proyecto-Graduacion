@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:app_notas_v2/providers/providers.dart';
 import 'package:app_notas_v2/shared/services/form_dynamic_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/models.dart';
 import '../shared/services/services.dart';
 
 class RegistroEstudianteScreen extends StatelessWidget {
@@ -30,10 +33,16 @@ class _FormRegistroEstudiante extends StatelessWidget {
       body  : SingleChildScrollView(
         child: Center(
           child: Column( children: [
-            formDynamicServide.obtenerFormulario(form, (){
+            formDynamicServide.obtenerFormulario(form, () {
 
-                      print(' obtener datos de formulario dinamico en form');
-                      print(formDynamicProvider.obtenerDatos( hashForm: form  ));
+                      final datos = formDynamicProvider.obtenerDatos( hashForm: form );
+                      final datosbd = jsonDecode(datos)['campos'];
+
+                      Estudiante estudianteNuevo = Estudiante.fromJson( datosbd );
+
+                      RespuestaApi rs = await query.ejecutarQuery('crearEstudiante', jsonEncode(estudianteNuevo));
+                      print( rs.mensaje );
+                      print( rs.respuesta );
 
                   }
               )
