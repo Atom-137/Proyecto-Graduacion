@@ -33,7 +33,7 @@ class _FormRegistroEstudiante extends StatelessWidget {
       body  : SingleChildScrollView(
         child: Center(
           child: Column( children: [
-            formDynamicServide.obtenerFormulario(form, () {
+            formDynamicServide.obtenerFormulario(form, () async {
 
                       final datos = formDynamicProvider.obtenerDatos( hashForm: form );
                       final datosbd = jsonDecode(datos)['campos'];
