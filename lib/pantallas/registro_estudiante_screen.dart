@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../models/models.dart';
 import '../shared/services/services.dart';
+import '../widgets/widgets.dart';
 
 class RegistroEstudianteScreen extends StatelessWidget {
   const RegistroEstudianteScreen({super.key});
@@ -17,7 +18,6 @@ class RegistroEstudianteScreen extends StatelessWidget {
     return  _FormRegistroEstudiante();
   }
 }
-
 
 class _FormRegistroEstudiante extends StatelessWidget {
   @override
@@ -41,8 +41,10 @@ class _FormRegistroEstudiante extends StatelessWidget {
                       Estudiante estudianteNuevo = Estudiante.fromJson( datosbd );
 
                       RespuestaApi rs = await query.ejecutarQuery('crearEstudiante', jsonEncode(estudianteNuevo));
-                      print( rs.mensaje );
-                      print( rs.respuesta );
+
+                      if( !context.mounted ) return;
+
+                      UltisWidget().mostrarMensaje(context, rs.mensaje, Colors.green);
 
                   }
               )
