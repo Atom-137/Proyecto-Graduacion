@@ -22,4 +22,23 @@ class QueryService{
       throw Exception('Error al enviar datos: ${response.statusCode}');
     }
   }
+
+  Future <RespuestaApi> ejecutarQueryGet(String endpoint, String datos ) async{
+
+
+    final response = await http.get(
+                    Uri.parse( '$_baseUrl/$endpoint'),
+                                headers : {'Content-Type': 'application/json'}
+                             );
+
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      RespuestaApi rs =  RespuestaApi.fromJson(jsonDecode(response.body));
+      return rs;
+    } else {
+
+      var rsBody = response.body;
+      throw Exception('Error al enviar datos: ${response.statusCode}, #REF: {$rsBody}');
+    }
+  }
+
 }

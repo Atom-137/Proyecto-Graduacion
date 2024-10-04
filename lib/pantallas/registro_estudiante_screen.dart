@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:app_notas_v2/providers/providers.dart';
+import 'package:app_notas_v2/shared/services/catalogos_service.dart';
 import 'package:app_notas_v2/shared/services/form_dynamic_service.dart';
 
 import 'package:flutter/material.dart';
@@ -28,6 +29,9 @@ class _FormRegistroEstudiante extends StatelessWidget {
     final query = QueryService();
     const form  = 'registrarEstudiante';
 
+    CatalogosService catalogos = CatalogosService();
+    catalogos.catalogoGrados();
+
     return Scaffold(
       appBar: AppBar( title: const Text('Registro de Estudiante')),
       body  : SingleChildScrollView(
@@ -44,7 +48,8 @@ class _FormRegistroEstudiante extends StatelessWidget {
 
                       if( !context.mounted ) return;
 
-                      UltisWidget().mostrarMensaje(context, rs.mensaje, Colors.green);
+                      Color colorRespuesta = rs.respuesta == 'success' ? Colors.green : Colors.orange;
+                      UltisWidget().mostrarMensaje(context, rs.mensaje, colorRespuesta);
 
                   }
               )
@@ -53,7 +58,6 @@ class _FormRegistroEstudiante extends StatelessWidget {
         ),
       )
     );
-
  }
 }
 
