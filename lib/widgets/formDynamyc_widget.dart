@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:app_notas_v2/providers/providers.dart';
 import 'package:app_notas_v2/shared/services/catalogos_service.dart';
 import 'package:flutter/material.dart';
@@ -48,9 +46,6 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                 return FutureBuilder(
                                   future : catalogos.catalogoGrados(),
                                   builder: (context, snapshot) {
-
-                                    print("snapshot");
-                                    print( snapshot.data );
 
                                     if(snapshot.data != null){
                                       return Column(

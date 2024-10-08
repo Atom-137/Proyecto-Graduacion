@@ -42,9 +42,6 @@ class _FormRegistroEstudiante extends StatelessWidget {
 
                       final datosbd = jsonDecode(datos)['campos'];
 
-                      print("datos bd antes de enviar: ");
-                      print( datosbd );
-
                       Estudiante estudianteNuevo = Estudiante.fromJson( datosbd );
 
                       RespuestaApi rs = await query.ejecutarQuery('crearEstudiante', jsonEncode(estudianteNuevo));
