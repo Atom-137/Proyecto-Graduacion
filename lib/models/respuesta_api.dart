@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final respuestaApi = respuestaApiFromJson(jsonString);
-
 import 'dart:convert';
 
 RespuestaApi respuestaApiFromJson(String str) => RespuestaApi.fromJson(json.decode(str));
@@ -28,6 +24,6 @@ class RespuestaApi {
   Map<String, dynamic> toJson() => {
     "respuesta" : respuesta,
     "mensaje"   : mensaje,
-    "data"      : data ?? []
+    "data"      : data
   };
 }

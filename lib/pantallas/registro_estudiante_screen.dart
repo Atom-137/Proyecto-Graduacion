@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:app_notas_v2/providers/providers.dart';
-import 'package:app_notas_v2/shared/services/catalogos_service.dart';
 import 'package:app_notas_v2/shared/services/form_dynamic_service.dart';
 
 import 'package:flutter/material.dart';
@@ -40,7 +39,11 @@ class _FormRegistroEstudiante extends StatelessWidget {
             formDynamicServide.obtenerFormulario(form, () async {
 
                       final datos = formDynamicProvider.obtenerDatos( hashForm: form );
+
                       final datosbd = jsonDecode(datos)['campos'];
+
+                      print("datos bd antes de enviar: ");
+                      print( datosbd );
 
                       Estudiante estudianteNuevo = Estudiante.fromJson( datosbd );
 

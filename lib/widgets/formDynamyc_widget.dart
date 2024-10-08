@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:app_notas_v2/providers/providers.dart';
+import 'package:app_notas_v2/shared/services/catalogos_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/models.dart';
@@ -21,6 +24,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
 
     final formProvider                      = Provider.of<FormdynamicProvider>(context);
     final FormDynamic formularioAux         = FormDynamic.fromJson( widget.formAux ) ;
+    final CatalogosService  catalogos       = CatalogosService();
 
     formProvider.crearForm(hashForm: formularioAux.hash);
 
@@ -41,20 +45,39 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                 ]);
                               }
                               else if( elementoForm.tipoEleForm == 'dropdown'){
-                                return Column(
-                                  children:[  const SizedBox( height: 20),
-                                              DropdownButtonFormField<String>(
-                                                  items: ['Masculino', 'Femenino']
-                                                             .map((label) => DropdownMenuItem( value: label,
-                                                                                               child: Text(label)
-                                                                                             )).toList(),
-                                                  onChanged: (value) {
-                                                    formProvider.asignarControlador( hashForm : formularioAux.hash,
-                                                        campo    : elementoForm.name,
-                                                        valor    : value);
+                                return FutureBuilder(
+                                  future : catalogos.catalogoGrados(),
+                                  builder: (context, snapshot) {
+
+                                    print("snapshot");
+                                    print( snapshot.data );
+
+                                    if(snapshot.data != null){
+                                      return Column(
+                                          children:[  const SizedBox( height: 20),
+                                            DropdownButtonFormField<String>(
+                                                items: snapshot.data!
+                                                    .map(( itemForm ){
+
+                                                    return  DropdownMenuItem(
+                                                            value : itemForm['idGrado'].toString(),
+                                                            child : Text(itemForm['nombreGrado'])
+                                                        );
                                                   }
-                                                )
-                                  ]
+                                                ).toList(),
+                                                onChanged: (value) {
+                                                  formProvider.asignarControlador( hashForm : formularioAux.hash,
+                                                      campo    : elementoForm.name,
+                                                      valor    : value);
+                                                }
+                                            )
+
+                                          ]
+                                      );
+                                    }else{
+                                      return const Text('Cargando info...');
+                                    }
+                                  },
                                 );
 
                               }else if ( elementoForm.tipoEleForm == 'checkbox'){
@@ -70,12 +93,12 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                   final lstCampos = ['Opcion 1', 'Opcion 2', 'Opcion 3 xd'];
 
                                   return Column(
-                                      children : [
-                                        const SizedBox( height: 20 ),
-                                        RadioButtonDynamicWidget( label    : elementoForm.label,
-                                                                       hash     : formularioAux.hash,
-                                                                       campo    : elementoForm.name,
-                                                                       lstDatos : lstCampos)]);
+                                          children : [
+                                          const SizedBox( height: 20 ),
+                                          RadioButtonDynamicWidget( label    : elementoForm.label,
+                                                                    hash     : formularioAux.hash,
+                                                                    campo    : elementoForm.name,
+                                                                    lstDatos : lstCampos)]);
 
                               }else if( elementoForm.tipoEleForm == 'slider'){
 

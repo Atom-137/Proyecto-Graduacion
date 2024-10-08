@@ -24,8 +24,7 @@ class QueryService{
   }
 
   Future <RespuestaApi> ejecutarQueryGet(String endpoint, String datos ) async{
-
-
+    
     final response = await http.get(
                     Uri.parse( '$_baseUrl/$endpoint'),
                                 headers : {'Content-Type': 'application/json'}

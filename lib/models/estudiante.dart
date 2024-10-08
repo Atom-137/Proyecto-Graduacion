@@ -11,7 +11,6 @@ class Estudiante {
   String segundoApellido;
   String cui;
   String grado;
-  String seccion;
   String user;
 
   Estudiante({
@@ -21,7 +20,6 @@ class Estudiante {
     required this.segundoApellido,
     required this.cui,
     required this.grado,
-    required this.seccion,
     required this.user
   });
 
@@ -32,7 +30,6 @@ class Estudiante {
     segundoApellido : json["segundoApellido"],
     cui             : json["cui"],
     grado           : json["grado"],
-    seccion         : json["seccion"],
     user            : json["user"]
   );
 
@@ -43,7 +40,6 @@ class Estudiante {
     "segundoApellido" : segundoApellido,
     "cui"             : cui,
     "grado"           : grado,
-    "seccion"         : seccion,
     "user"            : user
   };
 }

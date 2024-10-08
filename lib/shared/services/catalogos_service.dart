@@ -7,7 +7,7 @@ class CatalogosService{
       Future <List<dynamic>> catalogoGrados() async {
 
         QueryService queryService = QueryService();
-        RespuestaApi resp = await queryService.ejecutarQueryGet('catalogoGrados','');
+        RespuestaApi resp         = await queryService.ejecutarQueryGet('catalogoGrados','');
         return resp.data.toList();
         
       }
