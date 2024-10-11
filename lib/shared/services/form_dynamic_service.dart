@@ -184,7 +184,7 @@ class FormDynamicService {
           ElementformModel(
               tipoEleForm     : 'texto',
               name            : "nombreGrado",
-              label           : "grado",
+              label           : "Nombre Grado",
               validaciones    : [],
               disabled        : false,
               hintText        : 'Ingrese el Grado',
@@ -200,9 +200,9 @@ class FormDynamicService {
           ElementformModel(
               tipoEleForm     : 'botonGuardar',
               name            : "botonGuardar",
-              label           : "Guardar Estudiante",
+              label           : "Guardar Grado",
               disabled        : false,
-              hintText        : 'Guardar Estudiante',
+              hintText        : 'Guardar Grado',
               callback        : callback,
               requerido       : true,
               validaciones    : [])

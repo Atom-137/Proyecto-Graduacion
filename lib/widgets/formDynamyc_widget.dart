@@ -80,20 +80,20 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                 }else if( formularioAux.hash =='registroGrados'  ){
 
                                   return FutureBuilder(
-                                    future : catalogos.catalogoGrados(),
+                                    future : catalogos.catalogoSecciones(),
                                     builder: (context, snapshot) {
 
                                       if(snapshot.data != null){
                                         return Column(
                                             children:[  const SizedBox( height: 20),
-                                              const Text('Grado y Seccion '),
+                                              const Text('Seccion '),
                                               DropdownButtonFormField<String>(
                                                   items: snapshot.data!
                                                       .map(( itemForm ){
 
                                                     return  DropdownMenuItem(
-                                                        value : itemForm['idGrado'].toString(),
-                                                        child : Text(itemForm['nombreGrado'])
+                                                        value : itemForm['idSeccionGrado'].toString(),
+                                                        child : Text(itemForm['seccion'])
                                                     );
                                                   }
                                                   ).toList(),
