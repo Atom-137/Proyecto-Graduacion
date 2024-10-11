@@ -112,7 +112,9 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                     },
                                   );
                                 }
-
+                                else{
+                                  return Text('No existe el form');
+                                }
 
 
                               }else if ( elementoForm.tipoEleForm == 'checkbox'){
