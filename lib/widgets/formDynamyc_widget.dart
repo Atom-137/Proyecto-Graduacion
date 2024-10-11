@@ -9,7 +9,7 @@ class FormDynamicWidget extends StatefulWidget {
 
   final Map<String, dynamic> formAux;
 
-  const FormDynamicWidget( this.formAux, {super.key});
+  const FormDynamicWidget( this.formAux, {super.key} );
 
   @override
   State<FormDynamicWidget> createState() => _FormDynamicWidgetState();
@@ -43,46 +43,87 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                 ]);
                               }
                               else if( elementoForm.tipoEleForm == 'dropdown'){
-                                return FutureBuilder(
-                                  future : catalogos.catalogoGrados(),
-                                  builder: (context, snapshot) {
 
-                                    if(snapshot.data != null){
-                                      return Column(
-                                          children:[  const SizedBox( height: 20),
-                                            DropdownButtonFormField<String>(
-                                                items: snapshot.data!
-                                                    .map(( itemForm ){
+                                if( formularioAux.hash =='registrarEstudiante' ){
+                                  return FutureBuilder(
+                                    future : catalogos.catalogoGrados(),
+                                    builder: (context, snapshot) {
+
+                                      if(snapshot.data != null){
+                                        return Column(
+                                            children:[  const SizedBox( height: 20),
+                                              const Text('Grado y Seccion '),
+                                              DropdownButtonFormField<String>(
+                                                  items: snapshot.data!
+                                                      .map(( itemForm ){
 
                                                     return  DropdownMenuItem(
-                                                            value : itemForm['idGrado'].toString(),
-                                                            child : Text(itemForm['nombreGrado'])
-                                                        );
+                                                        value : itemForm['idGrado'].toString(),
+                                                        child : Text(itemForm['nombreGrado'])
+                                                    );
                                                   }
-                                                ).toList(),
-                                                onChanged: (value) {
-                                                  formProvider.asignarControlador( hashForm : formularioAux.hash,
-                                                      campo    : elementoForm.name,
-                                                      valor    : value);
-                                                }
-                                            )
+                                                  ).toList(),
+                                                  onChanged: (value) {
+                                                    formProvider.asignarControlador( hashForm : formularioAux.hash,
+                                                        campo    : elementoForm.name,
+                                                        valor    : value);
+                                                  }
+                                              )
 
-                                          ]
-                                      );
-                                    }else{
-                                      return const Text('Cargando info...');
-                                    }
-                                  },
-                                );
+                                            ]
+                                        );
+                                      }else{
+                                        return const Text('Cargando info...');
+                                      }
+                                    },
+                                  );
+                                }else if( formularioAux.hash =='registroGrados'  ){
+
+                                  return FutureBuilder(
+                                    future : catalogos.catalogoGrados(),
+                                    builder: (context, snapshot) {
+
+                                      if(snapshot.data != null){
+                                        return Column(
+                                            children:[  const SizedBox( height: 20),
+                                              const Text('Grado y Seccion '),
+                                              DropdownButtonFormField<String>(
+                                                  items: snapshot.data!
+                                                      .map(( itemForm ){
+
+                                                    return  DropdownMenuItem(
+                                                        value : itemForm['idGrado'].toString(),
+                                                        child : Text(itemForm['nombreGrado'])
+                                                    );
+                                                  }
+                                                  ).toList(),
+                                                  onChanged: (value) {
+                                                    formProvider.asignarControlador( hashForm : formularioAux.hash,
+                                                        campo    : elementoForm.name,
+                                                        valor    : value);
+                                                  }
+                                              )
+
+                                            ]
+                                        );
+                                      }else{
+                                        return const Text('Cargando info...');
+                                      }
+                                    },
+                                  );
+                                }
+
+
 
                               }else if ( elementoForm.tipoEleForm == 'checkbox'){
                                 return Column(
                                     children: [
                                       const SizedBox( height:  20 ),
-                                      CheckBoxDynamicWidget( labelCheckbox  : elementoForm.label,
-                                                                   hash           : formularioAux.hash,
-                                                                   campo          : elementoForm.name)
-                                ]);
+                                      CheckBoxDynamicWidget(
+                                          labelCheckbox  : elementoForm.label,
+                                                             hash           : formularioAux.hash,
+                                                             campo          : elementoForm.name)
+                                    ]);
                               }else if( elementoForm.tipoEleForm == 'radioButton'){
 
                                   final lstCampos = ['Opcion 1', 'Opcion 2', 'Opcion 3 xd'];

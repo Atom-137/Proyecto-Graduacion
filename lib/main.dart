@@ -1,4 +1,5 @@
 import 'package:app_notas_v2/pantallas/registro_estudiante_screen.dart';
+import 'package:app_notas_v2/pantallas/registro_maestro_screen.dart';
 import 'package:app_notas_v2/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const RegistroEstudianteScreen(),
+        home: const RegistroMaestroScreen(),
       ),
     );
   }
