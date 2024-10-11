@@ -6,7 +6,7 @@ import '../../widgets/widgets.dart';
 class FormDynamicService {
 
   FormDynamicWidget obtenerFormulario(String tipo, [Function? callback]) {
-    
+
     Map<String, dynamic> formAux = {};
 
     if (tipo == 'registrarEstudiante') {
@@ -179,7 +179,7 @@ class FormDynamicService {
       formAux = {
         "hash": tipo,
         "tipo": "form",
-        "formulario": "Registro de Estudiante",
+        "formulario": "Registro de Grados",
         "lstCampos": [
           ElementformModel(
               tipoEleForm     : 'texto',
@@ -215,6 +215,55 @@ class FormDynamicService {
 
 
     }
+
+    else if( tipo == 'registroCurso'){
+
+      formAux = {
+        "hash": tipo,
+        "tipo": "form",
+        "formulario": "Registro de Cursos",
+        "lstCampos": [
+          ElementformModel(
+              tipoEleForm     : 'texto',
+              name            : "curso",
+              label           : "Nombre Curso",
+              validaciones    : [],
+              disabled        : false,
+              hintText        : 'Ingrese el nombre del curso',
+              requerido       : true),
+          ElementformModel(
+              tipoEleForm   : 'dropdown',
+              name          : "maestro",
+              label         : "Maestro Encargado",
+              validaciones  : [],
+              disabled      : false,
+              hintText      : 'Seleccione Maestro Encargado',
+              requerido     : true),
+          ElementformModel(
+              tipoEleForm   : 'dropdown',
+              name          : "grado",
+              label         : "Grado del Curso",
+              validaciones  : [],
+              disabled      : false,
+              hintText      : 'Seleccione Grado',
+              requerido     : true),
+          ElementformModel(
+              tipoEleForm     : 'botonGuardar',
+              name            : "botonGuardar",
+              label           : "Guardar ",
+              disabled        : false,
+              hintText        : 'Guardar Grado',
+              callback        : callback,
+              requerido       : true,
+              validaciones    : [])
+        ],
+        "version": "1.0",
+        "lstAcciones": [
+          {"accion": "insertar"}
+        ]
+      };
+    }
+
     return FormDynamicWidget(formAux);
   }
 }
