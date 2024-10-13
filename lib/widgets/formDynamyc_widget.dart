@@ -162,7 +162,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                 if (snapshot.data != null) {
                   return Column(children: [
                     const SizedBox(height: 20),
-                    const Text('Cursos'),
+                    const Text('Seleccione el Curso'),
                     DropdownButtonFormField<String>(
                         items: snapshot.data!.map((itemForm) {
                           return DropdownMenuItem(
@@ -188,7 +188,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                 if (snapshot.data != null) {
                   return Column(children: [
                     const SizedBox(height: 20),
-                    const Text('Cursos'),
+                    const Text('Seleccione el Estudiante'),
                     DropdownButtonFormField<String>(
                         items: snapshot.data!.map((itemForm) {
                           return DropdownMenuItem(
@@ -211,7 +211,40 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                 }
               },
             );
-          } else {
+          }
+          else if (elementoForm.name == 'bimestre') {
+            return FutureBuilder(
+              future: catalogos.catalogoBimestres(),
+              builder: (context, snapshot) {
+                if (snapshot.data != null) {
+                  return Column(children: [
+                    const SizedBox(height: 20),
+                    const Text('Seleccione el Bimestre'),
+                    DropdownButtonFormField<String>(
+                        items: snapshot.data!.map((itemForm) {
+                          return DropdownMenuItem(
+                              value: itemForm['idBimestre'].toString(),
+                              child: SizedBox(
+                                  width: 300,
+                                  child: Text(itemForm['bimestre'])
+                              )
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          formProvider.asignarControlador(
+                              hashForm: formularioAux.hash,
+                              campo: elementoForm.name,
+                              valor: value);
+                        })
+                  ]);
+                } else {
+                  return const Text('Cargando info...');
+                }
+              },
+            );
+          }
+
+          else {
             return const Text('No se cargaron los datos de los cursos');
           }
         } else {

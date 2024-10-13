@@ -44,6 +44,14 @@ class CatalogosService{
         return resp.data.toList();
       }
 
+       Future <List<dynamic>> catalogoBimestres() async {
+
+          QueryService queryService = QueryService();
+          RespuestaApi resp         = await queryService.ejecutarQueryGet('catalogoBimestres','');
+
+          return resp.data.toList();
+        }
+
 
 
 }

@@ -287,6 +287,14 @@ class FormDynamicService {
               disabled      : false,
               hintText      : 'Seleccione el Curso',
               requerido     : true),
+          ElementformModel(
+              tipoEleForm   : 'dropdown',
+              name          : "bimestre",
+              label         : "Bimestre",
+              validaciones  : [],
+              disabled      : false,
+              hintText      : 'Seleccione el Bimestre',
+              requerido     : true),
 
           ElementformModel(
               tipoEleForm     : 'texto',
