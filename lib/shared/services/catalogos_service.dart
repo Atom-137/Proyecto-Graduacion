@@ -28,5 +28,22 @@ class CatalogosService{
         return resp.data.toList();
       }
 
+       Future <List<dynamic>> catalogoCursos() async {
+
+        QueryService queryService = QueryService();
+        RespuestaApi resp         = await queryService.ejecutarQueryGet('catalogoCursos','');
+
+        return resp.data.toList();
+      }
+
+      Future <List<dynamic>> catalogoEstudiante() async {
+
+        QueryService queryService = QueryService();
+        RespuestaApi resp         = await queryService.ejecutarQueryGet('catalogoEstudiantes','');
+
+        return resp.data.toList();
+      }
+
+
 
 }

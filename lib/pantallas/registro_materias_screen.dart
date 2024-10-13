@@ -30,9 +30,6 @@ class RegistroMateriasScreen extends StatelessWidget {
 
                     final datosbd = jsonDecode(datos)['campos'];
 
-                    print(' datos bd');
-                    print( datosbd.toString() );
-
                     Curso cursoNuevo = Curso.fromJson( datosbd );
 
                     RespuestaApi rs = await query.ejecutarQuery('registrarCurso', jsonEncode( cursoNuevo ));

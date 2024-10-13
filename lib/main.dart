@@ -1,3 +1,4 @@
+import 'package:app_notas_v2/pantallas/registro_grados_screen.dart';
 import 'package:app_notas_v2/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,12 +18,13 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: ( _ ) => FormdynamicProvider(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'App Notas',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const RegistroMateriasScreen(),
+        home: const RegistroNotasScreen(),
       ),
     );
   }

@@ -68,8 +68,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
               }
             },
           );
-        }
-        else if (formularioAux.hash == 'registroGrados') {
+        } else if (formularioAux.hash == 'registroGrados') {
           return FutureBuilder(
             future: catalogos.catalogoSecciones(),
             builder: (context, snapshot) {
@@ -95,10 +94,8 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
               }
             },
           );
-        }
-        else if (formularioAux.hash == 'registroCurso') {
-
-          if( elementoForm.name == 'maestro'){
+        } else if (formularioAux.hash == 'registroCurso') {
+          if (elementoForm.name == 'maestro') {
             return FutureBuilder(
               future: catalogos.catalogoMaestros(),
               builder: (context, snapshot) {
@@ -113,9 +110,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                                 value: itemForm['idMaestro'].toString(),
                                 child: SizedBox(
                                     width: 300,
-                                    child: Text(itemForm['nombreMaestro'])
-                                )
-                            );
+                                    child: Text(itemForm['nombreMaestro'])));
                           }).toList(),
                           onChanged: (value) {
                             formProvider.asignarControlador(
@@ -125,14 +120,12 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                           })
                     ],
                   );
-
                 } else {
                   return const Text('Cargando info...');
                 }
               },
             );
-          }
-          else if( elementoForm.name == 'grado' ){
+          } else if (elementoForm.name == 'grado') {
             return FutureBuilder(
               future: catalogos.catalogoGrados(),
               builder: (context, snapshot) {
@@ -158,11 +151,67 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                 }
               },
             );
-          }
-          else{
+          } else {
             return const Text('No se cargaron los datos de maestros y grados');
           }
-
+        } else if (formularioAux.hash == 'registroCalificacion') {
+          if (elementoForm.name == 'curso') {
+            return FutureBuilder(
+              future: catalogos.catalogoCursos(),
+              builder: (context, snapshot) {
+                if (snapshot.data != null) {
+                  return Column(children: [
+                    const SizedBox(height: 20),
+                    const Text('Cursos'),
+                    DropdownButtonFormField<String>(
+                        items: snapshot.data!.map((itemForm) {
+                          return DropdownMenuItem(
+                              value: itemForm['idCurso'].toString(),
+                              child: Text(itemForm['gradoSeccion']));
+                        }).toList(),
+                        onChanged: (value) {
+                          formProvider.asignarControlador(
+                              hashForm: formularioAux.hash,
+                              campo: elementoForm.name,
+                              valor: value);
+                        })
+                  ]);
+                } else {
+                  return const Text('Cargando info...');
+                }
+              },
+            );
+          } else if (elementoForm.name == 'estudiante') {
+            return FutureBuilder(
+              future: catalogos.catalogoEstudiante(),
+              builder: (context, snapshot) {
+                if (snapshot.data != null) {
+                  return Column(children: [
+                    const SizedBox(height: 20),
+                    const Text('Cursos'),
+                    DropdownButtonFormField<String>(
+                        items: snapshot.data!.map((itemForm) {
+                          return DropdownMenuItem(
+                              value: itemForm['idEstudiante'].toString(),
+                              child: SizedBox(
+                                      width: 300,
+                                      child: Text(itemForm['nomEstudiante'])));;
+                        }).toList(),
+                        onChanged: (value) {
+                          formProvider.asignarControlador(
+                              hashForm: formularioAux.hash,
+                              campo: elementoForm.name,
+                              valor: value);
+                        })
+                  ]);
+                } else {
+                  return const Text('Cargando info...');
+                }
+              },
+            );
+          } else {
+            return const Text('No se cargaron los datos de los cursos');
+          }
         } else {
           return const Text('No existe el catalogo de dropdown');
         }
@@ -175,7 +224,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
               campo: elementoForm.name)
         ]);
       } else if (elementoForm.tipoEleForm == 'radioButton') {
-        final lstCampos = ['Opcion 1', 'Opcion 2', 'Opcion 3 xd'];
+        final lstCampos = ['Opcion 1', 'Opcion 2', 'Opcion 3'];
 
         return Column(children: [
           const SizedBox(height: 20),

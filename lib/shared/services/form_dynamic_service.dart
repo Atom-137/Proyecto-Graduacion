@@ -264,6 +264,56 @@ class FormDynamicService {
       };
     }
 
+    else if( tipo == 'registroCalificacion'){
+
+      formAux = {
+        "hash": tipo,
+        "tipo": "form",
+        "formulario": "Registro de Calificaciones",
+        "lstCampos": [
+          ElementformModel(
+              tipoEleForm   : 'dropdown',
+              name          : "estudiante",
+              label         : "Seleccione al Estudiante",
+              validaciones  : [],
+              disabled      : false,
+              hintText      : 'Seleccione al Estudiante',
+              requerido     : true),
+          ElementformModel(
+              tipoEleForm   : 'dropdown',
+              name          : "curso",
+              label         : "Curso",
+              validaciones  : [],
+              disabled      : false,
+              hintText      : 'Seleccione el Curso',
+              requerido     : true),
+
+          ElementformModel(
+              tipoEleForm     : 'texto',
+              name            : "calificacion",
+              label           : "Ingrese la Nota del Bimestre",
+              validaciones    : [],
+              disabled        : false,
+              hintText        : 'Ingrese el nombre del curso',
+              requerido       : true),
+
+
+          ElementformModel(
+              tipoEleForm     : 'botonGuardar',
+              name            : "botonGuardar",
+              label           : "Guardar ",
+              disabled        : false,
+              hintText        : 'Guardar Grado',
+              callback        : callback,
+              requerido       : true,
+              validaciones    : [])
+        ],
+        "version": "1.0",
+        "lstAcciones": [
+          {"accion": "insertar"}
+        ]
+      };
+    }
     return FormDynamicWidget(formAux);
   }
 }
