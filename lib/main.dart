@@ -1,4 +1,3 @@
-import 'package:app_notas_v2/pantallas/registro_grados_screen.dart';
 import 'package:app_notas_v2/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

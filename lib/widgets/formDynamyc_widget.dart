@@ -195,7 +195,9 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                               value: itemForm['idEstudiante'].toString(),
                               child: SizedBox(
                                       width: 300,
-                                      child: Text(itemForm['nomEstudiante'])));;
+                                      child: Text(itemForm['nomEstudiante'])
+                              )
+                          );
                         }).toList(),
                         onChanged: (value) {
                           formProvider.asignarControlador(
