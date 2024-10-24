@@ -11,37 +11,37 @@ class MainRoute{
         GoRoute(
           path    : '/home'  ,
           name    : 'home',
-          builder : (context, state) => HomeScreen()
+          builder : (context, state) => const HomeScreen()
         ),
         GoRoute(
           path    : '/login' ,
           name    : 'login',
-          builder : (context, state) => IniciarSesionScreen()
+          builder : (context, state) => const IniciarSesionScreen()
         ),
         GoRoute(
           path    : '/regEstudiante',
           name    : 'regEstudiante',
-          builder : (context, state) => RegistroEstudianteScreen(),
+          builder : (context, state) => const RegistroEstudianteScreen(),
         ),
          GoRoute(
           path    : '/regGrado',
           name    : 'regGrado',
-          builder : (context, state) => RegistroGradosScreen(),
+          builder : (context, state) => const RegistroGradosScreen(),
         ),
          GoRoute(
           path    : '/regMaestro',
           name    : 'regMaestro',
-          builder : (context, state) => RegistroMaestroScreen(),
+          builder : (context, state) => const RegistroMaestroScreen(),
         ),
          GoRoute(
           path    : '/regMaterias',
           name    : 'regMaterias',
-          builder : (context, state) => RegistroMateriasScreen(),
+          builder : (context, state) => const RegistroMateriasScreen(),
         ),
          GoRoute(
           path    : '/regNotas',
           name    : 'regNotas',
-          builder : (context, state) => RegistroNotasScreen(),
+          builder : (context, state) => const RegistroNotasScreen(),
         )
       ]
   

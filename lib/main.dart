@@ -3,8 +3,6 @@ import 'package:app_notas_v2/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'pantallas/screens.dart';
-
 void main() {
   runApp(const MyApp());
 }
