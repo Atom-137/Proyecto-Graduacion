@@ -223,7 +223,7 @@ class _FormDynamicWidgetState extends State<FormDynamicWidget> {
                     DropdownButtonFormField<String>(
                         items: snapshot.data!.map((itemForm) {
                           return DropdownMenuItem(
-                              value: itemForm['idBimestre'].toString(),
+                               value: itemForm['idBimestre'].toString(),
                               child: SizedBox(
                                   width: 300,
                                   child: Text(itemForm['bimestre'])

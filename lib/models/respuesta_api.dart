@@ -5,9 +5,10 @@ RespuestaApi respuestaApiFromJson(String str) => RespuestaApi.fromJson(json.deco
 String respuestaApiToJson(RespuestaApi data) => json.encode(data.toJson());
 
 class RespuestaApi {
-  String          respuesta;
-  String          mensaje;
-  List<dynamic>   data;
+  String        respuesta;
+  String        mensaje;
+  dynamic       data;
+
 
   RespuestaApi({
     required this.respuesta,

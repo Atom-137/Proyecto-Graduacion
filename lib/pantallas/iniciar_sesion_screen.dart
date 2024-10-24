@@ -1,4 +1,8 @@
+import 'package:app_notas_v2/models/models.dart';
+import 'package:app_notas_v2/shared/services/auth_service.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/widgets.dart';
 
 
 class  IniciarSesionScreen extends StatefulWidget {
@@ -36,7 +40,6 @@ class Contenido extends StatefulWidget {
 class _ContenidoState extends State<Contenido> {
   @override
   Widget build(BuildContext context) {
-
 
     return const Padding(
           padding: EdgeInsets.symmetric( horizontal: 20),
@@ -95,7 +98,8 @@ class Datos extends StatefulWidget {
 
 class _DatosState extends State<Datos> {
 
-  bool  obs = true;
+  bool               obs        = true;
+  Map<String,String> datosLogin = {};
 
   @override
   Widget build(BuildContext context) {
@@ -120,10 +124,12 @@ class _DatosState extends State<Datos> {
                 height: 5,
               ),
               TextFormField(
+                maxLength: 10,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText:'Ingrese su Usuario'
                 ),
+                onChanged: ( value ) => datosLogin['username'] = value,
               ),
               const SizedBox(
                 height: 5,
@@ -133,7 +139,7 @@ class _DatosState extends State<Datos> {
                      color: Colors.black,
                      fontWeight: FontWeight.bold,
                      fontSize: 20
-                   ),),
+                   )),
               const SizedBox(
                 height: 5,
               ),
@@ -151,10 +157,53 @@ class _DatosState extends State<Datos> {
                     },
                   )
                 ),
+                onChanged: ( value ) => datosLogin['password'] = value,
               ),
-              const Remember(),
-              const SizedBox(),
-              const Botones()
+              const SizedBox( height: 20 ),
+              Column(
+                  children: [
+                  // ignore: sized_box_for_whitespace
+                  Container(
+                  width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () async{
+
+                        if( datosLogin['username'] == null || datosLogin['username']!.isEmpty ){
+                          UltisWidget().mostrarMensaje(context, 'Ingrese su Usuario', Colors.orange);
+                        }
+                        else if( datosLogin['password'] == null || datosLogin['password']!.isEmpty){
+                          UltisWidget().mostrarMensaje(context, 'Ingrese su Contraseña', Colors.orange);
+                        }
+                        else{
+                            AuthServices auth    = AuthServices();
+                            RespuestaApi rs      = await auth.login(datosLogin);
+                            Color colorRespuesta = rs.respuesta == 'success' ? Colors.green : Colors.orange;
+
+                            if( !context.mounted ) return;
+
+                            UltisWidget().mostrarMensaje(context, rs.mensaje, colorRespuesta);
+
+                            if( rs.respuesta == 'success'){
+
+                            }
+                        }
+                      },
+                      style: ButtonStyle(
+                        // ignore: deprecated_member_use
+                          backgroundColor: MaterialStateProperty.all<Color>( const Color( 0xff142047))
+                      ),
+                      child: const Text(
+                        'Iniciar Sesiòn',
+                        style: TextStyle(
+                            color: Colors.white
+                        ),
+                      ),
+                    ),
+                  ),
+                const SizedBox(),
+                ],
+              )
             ],
           ),
 
@@ -164,7 +213,7 @@ class _DatosState extends State<Datos> {
 }
 
 
-class Remember extends StatefulWidget {
+/*class Remember extends StatefulWidget {
   const Remember({super.key});
 
   @override
@@ -195,42 +244,7 @@ class _RememberState extends State<Remember> {
       ],
     );
   }
-}
-
-
-class Botones extends StatelessWidget {
-  const Botones({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Column(
-      children: [
-        // ignore: sized_box_for_whitespace
-        Container(
-          width: double.infinity,
-          height: 50,
-          child: ElevatedButton(
-            onPressed: (){},
-            style: ButtonStyle(
-              // ignore: deprecated_member_use
-              backgroundColor: MaterialStateProperty.all<Color>( const Color( 0xff142047))
-            ),
-            child: const Text(
-              'Iniciar Sesiòn',
-              style: TextStyle(
-                color: Colors.white
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(),
-      ],
-    );
-
-  }
-}
-
+}*/
 
 
 
