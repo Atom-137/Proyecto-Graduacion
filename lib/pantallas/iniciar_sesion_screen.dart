@@ -1,6 +1,7 @@
 import 'package:app_notas_v2/models/models.dart';
 import 'package:app_notas_v2/shared/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/widgets.dart';
 
@@ -185,7 +186,7 @@ class _DatosState extends State<Datos> {
                             UltisWidget().mostrarMensaje(context, rs.mensaje, colorRespuesta);
 
                             if( rs.respuesta == 'success'){
-
+                                context.go('/home');
                             }
                         }
                       },

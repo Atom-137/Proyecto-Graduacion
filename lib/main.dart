@@ -1,4 +1,5 @@
 import 'package:app_notas_v2/providers/providers.dart';
+import 'package:app_notas_v2/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,14 +17,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: ( _ ) => FormdynamicProvider(),
-      child: MaterialApp(
+      child: MaterialApp.router(
+        routerConfig              : MainRoute.rutas,
         debugShowCheckedModeBanner: false,
         title: 'App Notas',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
-        ),
-        home: const Center(child: IniciarSesionScreen()),
+        )
       ),
     );
   }
