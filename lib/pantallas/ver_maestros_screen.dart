@@ -48,7 +48,7 @@ class _VerMaestrosScreenState extends State<VerMaestrosScreen> {
                           return DataRow(
                             cells: [
                               DataCell(Text(item['nombreMaestro'].toString())),
-                              DataCell( IconButton(onPressed: (){}, icon: Icon( Icons.edit)))
+                              DataCell( IconButton(onPressed: (){}, icon: const Icon( Icons.edit)))
                             ],
                           );
                         }

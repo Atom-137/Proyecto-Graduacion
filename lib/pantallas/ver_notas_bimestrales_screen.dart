@@ -56,7 +56,7 @@ class _VerNotasBimestralesScreenState extends State<VerNotasBimestralesScreen> {
                               DataCell(Text(item['bimestre'])),
                               DataCell(Text(item['calficacion'])),
                               DataCell(Text(item['nombreEstudiante'])),
-                              DataCell( IconButton(onPressed: (){}, icon: Icon( Icons.edit)))
+                              DataCell( IconButton(onPressed: (){}, icon: const Icon( Icons.edit)))
                             ],
                           );
                         }

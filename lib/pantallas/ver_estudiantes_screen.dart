@@ -52,7 +52,7 @@ class _VerEstudiantesScreenState extends State<VerEstudiantesScreen> {
                               DataCell(Text(item['nomEstudiante'].toString())),
                               DataCell( IconButton(onPressed: (){
 
-                              }, icon: Icon( Icons.edit)))
+                              }, icon: const Icon( Icons.edit)))
                             ],
                           );
                         }
