@@ -186,7 +186,7 @@ class _DatosState extends State<Datos> {
                             UltisWidget().mostrarMensaje(context, rs.mensaje, colorRespuesta);
 
                             if( rs.respuesta == 'success'){
-                                context.go('/home');
+                                context.goNamed('home');
                             }
                         }
                       },
