@@ -36,6 +36,7 @@ class _RegistroNotasScreenState extends State<RegistroNotasScreen> {
                   final datosbd = jsonDecode(datos)['campos'];
 
                   Calificacion calificacionNueva = Calificacion.fromJson( datosbd );
+
                   RespuestaApi rs = await query.ejecutarQuery('registroCalificacion', jsonEncode( calificacionNueva ));
 
                   if( !context.mounted ) return;

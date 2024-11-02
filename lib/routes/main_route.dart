@@ -1,6 +1,10 @@
 
+import 'package:app_notas_v2/pantallas/ciclo_escolar_screen.dart';
 import 'package:app_notas_v2/pantallas/registro_grados_screen.dart';
 import 'package:app_notas_v2/pantallas/screens.dart';
+import 'package:app_notas_v2/pantallas/ver_estudiantes_screen.dart';
+import 'package:app_notas_v2/pantallas/ver_maestros_screen.dart';
+import 'package:app_notas_v2/pantallas/ver_notas_bimestrales_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class MainRoute{
@@ -40,18 +44,23 @@ class MainRoute{
             ),
             GoRoute(
               path    : 'verNotas',
-              name    : 'regNotas',
-              builder : (context, state) => const RegistroNotasScreen(),
+              name    : 'verNotas',
+              builder : (context, state) => const VerNotasBimestralesScreen(),
             ),
             GoRoute(
               path    : 'verMaestros',
-              name    : 'regNotas',
-              builder : (context, state) => const RegistroNotasScreen(),
+              name    : 'verMaestros',
+              builder : (context, state) => const VerMaestrosScreen(),
             ),
             GoRoute(
               path    : 'verEstudiantes',
-              name    : 'regNotas',
-              builder : (context, state) => const RegistroNotasScreen(),
+              name    : 'verEstudiantes',
+              builder : (context, state) => const VerEstudiantesScreen(),
+            ),
+            GoRoute(
+              path    : 'cicloEscolar',
+              name    : 'cicloEscolar',
+              builder : (context, state) => const CicloEscolarScreen(),
             ),
 
           ]
@@ -66,11 +75,15 @@ class MainRoute{
   );
 
   static final List<Map<String,String>> lstRutas = [
-    {'modulo': 'Registro Estudiante', 'path':'/regEstudiante'},
-    {'modulo': 'Registro Grado'     , 'path':'/regGrado'},
-    {'modulo': 'Registro Maestros'  , 'path':'/regMaestro'},
-    {'modulo': 'Registro Materias'  , 'path':'/regMaterias'},
-    {'modulo': 'Registro Notas'     , 'path':'/regNotas'},
+    {'modulo': 'Registro Estudiante', 'path':'/regEstudiante' , 'descripcion':'Modulo para Registro de Estudiantes'},
+    {'modulo': 'Registro Grado'     , 'path':'/regGrado'      , 'descripcion': 'Modulo para el Registro de Grados'},
+    {'modulo': 'Registro Maestros'  , 'path':'/regMaestro'    , 'descripcion': 'Modulo para el Registro de Maestros'},
+    {'modulo': 'Registro Materias'  , 'path':'/regMaterias'   , 'descripcion': 'Modulo para el Registro de Materias'},
+    {'modulo': 'Registro Notas'     , 'path':'/regNotas'      , 'descripcion' : 'Modulo para el Registro de Notas'},
+    {'modulo': 'Ver Calificaciones' , 'path':'/verNotas'      , 'descripcion': 'Modulo para visualizacion de Notas'},
+    {'modulo': 'Ver Estudiantes'    , 'path':'/verEstudiantes', 'descripcion': 'Modulo para visualizacion de Estudiantes'},
+    {'modulo': 'Ver Maestros'       , 'path':'/verMaestros'   , 'descripcion': 'Modulo para visualizacion de Masetros'},
+    {'modulo': 'Ciclos Escolares'   , 'path':'/cicloEscolar'  , 'descripcion': 'Modulo para Ciclos Escolares'},
 
   ];
 }

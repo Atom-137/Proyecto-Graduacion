@@ -7,6 +7,9 @@ class QueryService{
 
   final String _baseUrl = 'http://192.168.0.187:5000/apinotas';
 
+  // CONFIG PRODUCCION
+  // final String _baseUrl = 'http://3.133.134.198:8000 /apinotas';
+
   Future <RespuestaApi> ejecutarQuery(String endpoint, String datos ) async{
 
 

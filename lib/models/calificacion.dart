@@ -9,12 +9,14 @@ class Calificacion {
   String idDocente;
   String idEstudiante;
   String calificacion;
+  String idBimestre;
 
   Calificacion({
     required this.idCurso,
     required this.idDocente,
     required this.idEstudiante,
     required this.calificacion,
+    required this.idBimestre
   });
 
   factory Calificacion.fromJson(Map<String, dynamic> json) => Calificacion(
@@ -22,6 +24,7 @@ class Calificacion {
     idDocente     : '1',
     idEstudiante  : json["estudiante"],
     calificacion  : json["calificacion"],
+    idBimestre    : json["bimestre"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -29,5 +32,6 @@ class Calificacion {
     "idDocente"     : idDocente,
     "idEstudiante"  : idEstudiante,
     "calificacion"  : calificacion,
+    "idBimestre"    : idBimestre
   };
 }
