@@ -14,11 +14,11 @@ class CicloEscolarScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Inicio de Ciclo Escolar, Darle tab al boton Iniciar Ciclo Escolar'
+              const Text('Inicio de Ciclo Escolar, Darle tab al boton Iniciar Ciclo Escolar'
                   'para iniciar el ciclo '),
               ElevatedButton(
                 onPressed: (){},
-                child: Text('Inciar Ciclo Escolar'))
+                child: const Text('Inciar Ciclo Escolar'))
 
             ]
           ),
