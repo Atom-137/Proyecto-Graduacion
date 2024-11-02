@@ -7,11 +7,16 @@ class CicloEscolarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar( title: const Text('Ciclo Escolar')),
-      body: const Column(
-        children: [
-          Text('Inicio de Ciclo Escolar')
+      body: Center(
+        child: Column(
+          children: [
+            Text('Inicio de Ciclo Escolar'),
+            FloatingActionButton(
+              onPressed: (){},
+              child: Text('Inciar Ciclo Escolar'))
 
-        ],
+          ]
+        ),
       ),
     );
   }
