@@ -7,15 +7,21 @@ class CicloEscolarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar( title: const Text('Ciclo Escolar')),
-      body: Center(
-        child: Column(
-          children: [
-            Text('Inicio de Ciclo Escolar'),
-            FloatingActionButton(
-              onPressed: (){},
-              child: Text('Inciar Ciclo Escolar'))
+      body: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('Inicio de Ciclo Escolar, Darle tab al boton Iniciar Ciclo Escolar'
+                  'para iniciar el ciclo '),
+              ElevatedButton(
+                onPressed: (){},
+                child: Text('Inciar Ciclo Escolar'))
 
-          ]
+            ]
+          ),
         ),
       ),
     );

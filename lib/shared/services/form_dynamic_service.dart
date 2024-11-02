@@ -5,7 +5,7 @@ import '../../widgets/widgets.dart';
 
 class FormDynamicService {
 
-  FormDynamicWidget obtenerFormulario(String tipo, [Function? callback]) {
+  Widget obtenerFormulario(String tipo, [Function? callback]) {
 
     Map<String, dynamic> formAux = {};
 
@@ -322,6 +322,9 @@ class FormDynamicService {
         ]
       };
     }
-    return FormDynamicWidget(formAux);
+    return Padding(
+      padding: const EdgeInsets.all(25.0),
+      child: FormDynamicWidget(formAux),
+    );
   }
 }
