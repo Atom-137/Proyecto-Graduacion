@@ -10,18 +10,18 @@ class ResetPasswordScreen extends StatelessWidget {
     String userReset;
 
     return Scaffold(
-      appBar: AppBar( title: Text('Cambio de Contraseña')),
+      appBar: AppBar( title: const Text('Cambio de Contraseña')),
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment:  MainAxisAlignment.center,
           children: [
-            Text('Ingrese su Usuario'),
-            SizedBox( height:  20,),
+            const Text('Ingrese su Usuario'),
+            const SizedBox( height:  20,),
             TextFormField(onChanged: (value) => userReset = value ),
-            SizedBox( height:  20,),
+            const SizedBox( height:  20,),
             ElevatedButton(onPressed: () => {
 
-            }, child: Text('Restablecer Contraseña'))
+            }, child: const Text('Restablecer Contraseña'))
           ],
       ),
     );
