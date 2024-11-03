@@ -1,6 +1,7 @@
 
 import 'package:app_notas_v2/pantallas/ciclo_escolar_screen.dart';
 import 'package:app_notas_v2/pantallas/registro_grados_screen.dart';
+import 'package:app_notas_v2/pantallas/reset_password_screen.dart';
 import 'package:app_notas_v2/pantallas/screens.dart';
 import 'package:app_notas_v2/pantallas/ver_estudiantes_screen.dart';
 import 'package:app_notas_v2/pantallas/ver_maestros_screen.dart';
@@ -61,16 +62,21 @@ class MainRoute{
               path    : 'cicloEscolar',
               name    : 'cicloEscolar',
               builder : (context, state) => const CicloEscolarScreen(),
-            ),
-
+            )
           ]
         ),
         GoRoute(
           path    : '/login' ,
           name    : 'login',
-          builder : (context, state) => const IniciarSesionScreen()
-        ),
-
+          builder : (context, state) => const IniciarSesionScreen(),
+          routes  : [
+            GoRoute(
+                path    : 'resetPassword',
+                name    : 'resetPassword',
+                builder : (context, state) => const ResetPasswordScreen()
+            )
+          ]
+        )
       ]
   );
 
@@ -84,6 +90,6 @@ class MainRoute{
     {'modulo': 'Ver Estudiantes'    , 'path':'/verEstudiantes', 'descripcion': 'Modulo para visualizacion de Estudiantes'},
     {'modulo': 'Ver Maestros'       , 'path':'/verMaestros'   , 'descripcion': 'Modulo para visualizacion de Masetros'},
     {'modulo': 'Ciclos Escolares'   , 'path':'/cicloEscolar'  , 'descripcion': 'Modulo para Ciclos Escolares'},
-
+    // {'modulo': 'Reset Password'     , 'path':'/resetPassword'  , 'descripcion': 'Modulo para Ciclos Escolares'},
   ];
 }

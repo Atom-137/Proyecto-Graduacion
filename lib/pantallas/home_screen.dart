@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
               margin : const EdgeInsets.all(8.0),
               child  : ListTile(
                 title    : Text(rutaAux['modulo']!),
-                subtitle : const Text('Este es el subtitulo'),
+                subtitle : Text(rutaAux['descripcion']!),
                 trailing : const Icon(Icons.arrow_forward),
                 onTap    : () {
                          context.go( rutaAux['path']! );

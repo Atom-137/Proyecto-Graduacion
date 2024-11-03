@@ -99,8 +99,9 @@ class Datos extends StatefulWidget {
 
 class _DatosState extends State<Datos> {
 
-  bool               obs        = true;
-  Map<String,String> datosLogin = {};
+  bool               obs            = true;
+  Map<String,String> datosLogin     = {};
+  bool               confirmarPass  = false;
 
   @override
   Widget build(BuildContext context) {
@@ -160,6 +161,23 @@ class _DatosState extends State<Datos> {
                 ),
                 onChanged: ( value ) => datosLogin['password'] = value,
               ),
+              if( confirmarPass )
+              TextFormField(
+                obscureText: obs,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  hintText: 'Confirme su Contraseña',
+                  suffixIcon: IconButton(
+                    icon: const Icon( Icons.remove_red_eye_outlined),
+                    onPressed: () {
+                      setState(() {
+                        obs = !obs;
+                      });
+                    },
+                  )
+                ),
+                onChanged: ( value ) => datosLogin['password'] = value,
+              ),
               const SizedBox( height: 20 ),
               Column(
                   children: [
@@ -168,7 +186,7 @@ class _DatosState extends State<Datos> {
                   width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () async{
+                      onPressed: () async {
 
                         if( datosLogin['username'] == null || datosLogin['username']!.isEmpty ){
                           UltisWidget().mostrarMensaje(context, 'Ingrese su Usuario', Colors.orange);
@@ -181,11 +199,15 @@ class _DatosState extends State<Datos> {
                             RespuestaApi rs      = await auth.login(datosLogin);
                             Color colorRespuesta = rs.respuesta == 'success' ? Colors.green : Colors.orange;
 
+
                             if( !context.mounted ) return;
 
                             UltisWidget().mostrarMensaje(context, rs.mensaje, colorRespuesta);
 
                             if( rs.respuesta == 'success'){
+                                setState(() {
+                                  confirmarPass = true;
+                                });
                                 context.goNamed('home');
                             }
                         }
@@ -202,7 +224,8 @@ class _DatosState extends State<Datos> {
                       ),
                     ),
                   ),
-                const SizedBox(),
+                    const SizedBox(),
+                    const ResetPassword()
                 ],
               )
             ],
@@ -214,38 +237,30 @@ class _DatosState extends State<Datos> {
 }
 
 
-/*class Remember extends StatefulWidget {
-  const Remember({super.key});
+class ResetPassword extends StatefulWidget {
+  const ResetPassword({super.key});
 
   @override
-  State<Remember> createState() => _RememberState();
+  State<ResetPassword> createState() => _ResetPassword();
 }
 
-class _RememberState extends State<Remember> {
+class _ResetPassword extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
 
-    bool valor = false;
-
     return Row(
       children: [
-        Checkbox(value: valor,
-                 onChanged: (valor) {
-                   setState(() {
-                     valor = !valor!;
-                   });
-                 }
-        ),
-        const Text('Recordarme'),
         const Spacer(),
         TextButton(
-          onPressed: (){},
+          onPressed: (){
+              context.go('/login/resetPassword');
+          },
           child: const Text('¿Olvidaste la contraseña?')
         )
       ],
     );
   }
-}*/
+}
 
 
 
