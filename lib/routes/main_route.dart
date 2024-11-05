@@ -81,15 +81,16 @@ class MainRoute{
   );
 
   static final List<Map<String,String>> lstRutas = [
-    {'modulo': 'Registro Estudiante', 'path':'/regEstudiante' , 'descripcion':'Modulo para Registro de Estudiantes'},
-    {'modulo': 'Registro Grado'     , 'path':'/regGrado'      , 'descripcion': 'Modulo para el Registro de Grados'},
-    {'modulo': 'Registro Maestros'  , 'path':'/regMaestro'    , 'descripcion': 'Modulo para el Registro de Maestros'},
-    {'modulo': 'Registro Materias'  , 'path':'/regMaterias'   , 'descripcion': 'Modulo para el Registro de Materias'},
-    {'modulo': 'Registro Notas'     , 'path':'/regNotas'      , 'descripcion' : 'Modulo para el Registro de Notas'},
-    {'modulo': 'Ver Calificaciones' , 'path':'/verNotas'      , 'descripcion': 'Modulo para visualizacion de Notas'},
-    {'modulo': 'Ver Estudiantes'    , 'path':'/verEstudiantes', 'descripcion': 'Modulo para visualizacion de Estudiantes'},
-    {'modulo': 'Ver Maestros'       , 'path':'/verMaestros'   , 'descripcion': 'Modulo para visualizacion de Masetros'},
-    {'modulo': 'Ciclos Escolares'   , 'path':'/cicloEscolar'  , 'descripcion': 'Modulo para Ciclos Escolares'},
+    {'modulo': 'Registro Estudiante', 'idRol' : '1', 'path':'/regEstudiante' , 'descripcion':'Modulo para Registro de Estudiantes'},
+    {'modulo': 'Registro Grado'     , 'idRol' : '1', 'path':'/regGrado'      , 'descripcion': 'Modulo para el Registro de Grados'},
+    {'modulo': 'Registro Maestros'  , 'idRol' : '1', 'path':'/regMaestro'    , 'descripcion': 'Modulo para el Registro de Maestros'},
+    {'modulo': 'Registro Materias'  , 'idRol' : '1', 'path':'/regMaterias'   , 'descripcion': 'Modulo para el Registro de Materias'},
+    {'modulo': 'Registro Notas'     , 'idRol' : '2', 'path':'/regNotas'      , 'descripcion' : 'Modulo para el Registro de Notas'},
+    {'modulo': 'Ver Calificaciones' , 'idRol' : '2', 'path':'/verNotas'      , 'descripcion': 'Modulo para visualizacion de Notas'},
+    {'modulo': 'Ver Calificaciones' , 'idRol' : '3', 'path':'/verNotas'      , 'descripcion': 'Modulo para visualizacion de Notas'},
+    {'modulo': 'Ver Estudiantes'    , 'idRol' : '1', 'path':'/verEstudiantes', 'descripcion': 'Modulo para visualizacion de Estudiantes'},
+    {'modulo': 'Ver Maestros'       , 'idRol' : '1', 'path':'/verMaestros'   , 'descripcion': 'Modulo para visualizacion de Masetros'},
+    {'modulo': 'Ciclos Escolares'   , 'idRol' : '1', 'path':'/cicloEscolar'  , 'descripcion': 'Modulo para Ciclos Escolares'},
     // {'modulo': 'Reset Password'     , 'path':'/resetPassword'  , 'descripcion': 'Modulo para Ciclos Escolares'},
   ];
 }

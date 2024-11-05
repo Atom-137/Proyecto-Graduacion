@@ -302,7 +302,9 @@ class FormDynamicService {
               label           : "Ingrese la Nota del Bimestre",
               validaciones    : [],
               disabled        : false,
-              hintText        : 'Ingrese el nombre del curso',
+              maxLength       : 3,
+              keyboarType     : TextInputType.number,
+              hintText        : 'Ingrese la Nota del Bimestre',
               requerido       : true),
 
 
