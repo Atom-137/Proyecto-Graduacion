@@ -106,7 +106,6 @@ class _DatosState extends State<Datos> {
 
   setDatosSecureStorage ( String idRol, String nombreUser) async {
 
-    print("set datos");
     await secureStorage.write(key: 'idRol'      , value: idRol);
     await secureStorage.write(key: 'nombreUser' , value: nombreUser);
 
@@ -117,7 +116,7 @@ class _DatosState extends State<Datos> {
   Map<String,String> datosLogin             = {};
   bool               confirmarPass          = false;
   String             passConfirmar          = '';
-  final FlutterSecureStorage secureStorage  = FlutterSecureStorage();
+  final FlutterSecureStorage secureStorage  = const FlutterSecureStorage();
 
   final TextEditingController _controllerPass         = TextEditingController();
   final TextEditingController _controlerUser          = TextEditingController();

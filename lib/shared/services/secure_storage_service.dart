@@ -4,7 +4,7 @@ class SecureStorageService {
   static final SecureStorageService _instance = SecureStorageService._internal();
   factory SecureStorageService() => _instance;
 
-  final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   SecureStorageService._internal();
 

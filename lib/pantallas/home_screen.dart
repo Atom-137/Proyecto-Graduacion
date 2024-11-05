@@ -1,14 +1,13 @@
 import 'package:app_notas_v2/routes/main_route.dart';
-import 'package:app_notas_v2/shared/services/secure_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
-  @override
   Future<Map<String,String?>> getDatosUser() async {
-    final FlutterSecureStorage secureStorage  = FlutterSecureStorage();
+    const FlutterSecureStorage secureStorage  =  FlutterSecureStorage();
 
     Map<String, String?> dataUser = {
       'idRol'       : await secureStorage.read(key: 'idRol'),
@@ -31,13 +30,13 @@ class HomeScreen extends StatelessWidget {
           String idRol      = snapshot.data!['nombreUser']!;
 
           return Scaffold(
-              backgroundColor: Color(0xFFFFFFFF),
+              backgroundColor: const Color(0xFFFFFFFF),
               appBar: AppBar(
-                backgroundColor: Color(0xFFFFFFFF),
+                backgroundColor: const Color(0xFFFFFFFF),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween, // Espaciado entre el título y la imagen
                   children: [
-                    Text('Bienvenido(a)'), // Aquí está tu título
+                    const Text('Bienvenido(a)'), // Aquí está tu título
                     Align(
                       alignment: Alignment.centerRight,
                       child:
@@ -54,16 +53,16 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               body: Container(
-                color: Color(0xFFFFFFFF),
+                color: const Color(0xFFFFFFFF),
                 child: Column(
                   children: [
                     Expanded(
                       child: Column(
                         children: [
-                          Text('Ha iniciado sesion como : '),
+                          const Text('Ha iniciado sesion como : '),
                           Text(nombreUser),
-                          SizedBox(height: 20),
-                          Container(
+                          const SizedBox(height: 20),
+                          SizedBox(
                             height: 600.0,
                             child: ListView.builder(
                                 itemCount: MainRoute.lstRutas.length,
@@ -90,12 +89,12 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       color: Colors.grey,
                       child: Center(
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                               'Copyright © Jafir Garcia - 2024',
                               style: TextStyle(color: Colors.white),
                             ),
@@ -108,8 +107,10 @@ class HomeScreen extends StatelessWidget {
                 ),
               )
           );
-        }else
-          return Text('Cargando Info...');
+        }else{
+          return const Text('Cargando Info...');
+        }
+
     
       }
     );
