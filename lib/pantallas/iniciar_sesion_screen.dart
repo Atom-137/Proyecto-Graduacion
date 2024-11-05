@@ -1,14 +1,16 @@
+import 'dart:convert';
+
 import 'package:app_notas_v2/models/models.dart';
 import 'package:app_notas_v2/shared/services/auth_service.dart';
+import 'package:app_notas_v2/shared/services/secure_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../widgets/widgets.dart';
 
 
 class  IniciarSesionScreen extends StatefulWidget {
-
-
 
   const IniciarSesionScreen({super.key});
 
@@ -102,14 +104,26 @@ class Datos extends StatefulWidget {
 
 class _DatosState extends State<Datos> {
 
-  bool               obs            = true;
-  Map<String,String> datosLogin     = {};
-  bool               confirmarPass  = false;
-  String             passConfirmar  = '';
+  setDatosSecureStorage ( String idRol, String nombreUser) async {
+
+    print("set datos");
+    await secureStorage.write(key: 'idRol'      , value: idRol);
+    await secureStorage.write(key: 'nombreUser' , value: nombreUser);
+
+
+  }
+
+  bool               obs                    = true;
+  Map<String,String> datosLogin             = {};
+  bool               confirmarPass          = false;
+  String             passConfirmar          = '';
+  final FlutterSecureStorage secureStorage  = FlutterSecureStorage();
 
   final TextEditingController _controllerPass         = TextEditingController();
   final TextEditingController _controlerUser          = TextEditingController();
   final TextEditingController _controlerPassConfirmar = TextEditingController();
+
+  SecureStorageService secureService = SecureStorageService();
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +231,11 @@ class _DatosState extends State<Datos> {
                             UltisWidget().mostrarMensaje(context, rs.mensaje, colorRespuesta);
 
                             if( rs.respuesta == 'success'){
+
+                              var dataUser = jsonDecode(rs.data);
                               context.goNamed('home');
+                              setDatosSecureStorage( dataUser['idRol'].toString(),dataUser['nombreUsuario']);
+
                             }
                             else if( rs.respuesta =='info'){
                               setState(() {

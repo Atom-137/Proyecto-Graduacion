@@ -16,7 +16,7 @@ class MainRoute{
         GoRoute(
           path    : '/'  ,
           name    : 'home',
-          builder : (context, state) => const HomeScreen(),
+          builder : (context, state) => HomeScreen(),
           routes  : [
             GoRoute(
               path    : 'regEstudiante',
