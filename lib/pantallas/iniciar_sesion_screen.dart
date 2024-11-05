@@ -8,6 +8,8 @@ import '../widgets/widgets.dart';
 
 class  IniciarSesionScreen extends StatefulWidget {
 
+
+
   const IniciarSesionScreen({super.key});
 
   @override
@@ -39,7 +41,8 @@ class Contenido extends StatefulWidget {
 }
 
 class _ContenidoState extends State<Contenido> {
-  @override
+
+   @override
   Widget build(BuildContext context) {
 
     return const Padding(
@@ -102,11 +105,15 @@ class _DatosState extends State<Datos> {
   bool               obs            = true;
   Map<String,String> datosLogin     = {};
   bool               confirmarPass  = false;
+  String             passConfirmar  = '';
+
+  final TextEditingController _controllerPass         = TextEditingController();
+  final TextEditingController _controlerUser          = TextEditingController();
+  final TextEditingController _controlerPassConfirmar = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
-      return Container(
+    return Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -126,6 +133,7 @@ class _DatosState extends State<Datos> {
                 height: 5,
               ),
               TextFormField(
+                controller: _controlerUser,
                 maxLength: 10,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -146,6 +154,7 @@ class _DatosState extends State<Datos> {
                 height: 5,
               ),
               TextFormField(
+                controller: _controllerPass,
                 obscureText: obs,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
@@ -163,7 +172,9 @@ class _DatosState extends State<Datos> {
               ),
               if( confirmarPass )
               TextFormField(
+                controller: _controlerPassConfirmar,
                 obscureText: obs,
+                initialValue: datosLogin['passwordConfirmar'],
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   hintText: 'Confirme su Contraseña',
@@ -174,9 +185,9 @@ class _DatosState extends State<Datos> {
                         obs = !obs;
                       });
                     },
-                  )
+                  ),
                 ),
-                onChanged: ( value ) => datosLogin['password'] = value,
+                onChanged: ( value ) => datosLogin['passwordConfirmar'] = value,
               ),
               const SizedBox( height: 20 ),
               Column(
@@ -188,13 +199,14 @@ class _DatosState extends State<Datos> {
                     child: ElevatedButton(
                       onPressed: () async {
 
-                        if( datosLogin['username'] == null || datosLogin['username']!.isEmpty ){
-                          UltisWidget().mostrarMensaje(context, 'Ingrese su Usuario', Colors.orange);
-                        }
-                        else if( datosLogin['password'] == null || datosLogin['password']!.isEmpty){
-                          UltisWidget().mostrarMensaje(context, 'Ingrese su Contraseña', Colors.orange);
-                        }
-                        else{
+                        if( !confirmarPass ){
+                          if( datosLogin['username'] == null || datosLogin['username']!.isEmpty ){
+                            UltisWidget().mostrarMensaje(context, 'Ingrese su Usuario', Colors.orange);
+                          }
+                          else if( datosLogin['password'] == null || datosLogin['password']!.isEmpty){
+                            UltisWidget().mostrarMensaje(context, 'Ingrese su Contraseña', Colors.orange);
+                          }
+                          else{
                             AuthServices auth    = AuthServices();
                             RespuestaApi rs      = await auth.login(datosLogin);
                             Color colorRespuesta = rs.respuesta == 'success' ? Colors.green : Colors.orange;
@@ -205,12 +217,42 @@ class _DatosState extends State<Datos> {
                             UltisWidget().mostrarMensaje(context, rs.mensaje, colorRespuesta);
 
                             if( rs.respuesta == 'success'){
-                                setState(() {
-                                  confirmarPass = true;
-                                });
-                                context.goNamed('home');
+                              context.goNamed('home');
                             }
+                            else if( rs.respuesta =='info'){
+                              setState(() {
+                                confirmarPass = true;
+                              });
+                            }
+                          }
+                        }else{
+                          if( datosLogin['password'] != datosLogin['passwordConfirmar'] ){
+                            UltisWidget().mostrarMensaje(context, 'Las contraseñas deben coincidir', Colors.indigo);
+                          }else{
+
+                            AuthServices auth    = AuthServices();
+                            RespuestaApi rs      = await auth.setPass(datosLogin);
+                            Color colorRespuesta = rs.respuesta == 'success' ? Colors.green : Colors.orange;
+
+
+                            if( !context.mounted ) return;
+
+                            UltisWidget().mostrarMensaje(context, rs.mensaje, colorRespuesta);
+
+                            if( rs.respuesta == 'success'){
+                              setState(() {
+                                confirmarPass                   = false;
+                                datosLogin['password']          = '';
+                                datosLogin['passwordConfirmar'] = '';
+                                _controllerPass.clear();
+                                _controlerUser.clear();
+                                _controlerPassConfirmar.clear();
+                              });
+                            }
+
+                          }
                         }
+
                       },
                       style: ButtonStyle(
                         // ignore: deprecated_member_use
@@ -225,7 +267,18 @@ class _DatosState extends State<Datos> {
                     ),
                   ),
                     const SizedBox(),
-                    const ResetPassword()
+                    TextButton(
+                        onPressed: (){
+                          setState(() {
+                            _controllerPass.clear();
+                            _controlerUser.clear();
+                            _controlerPassConfirmar.clear();
+                            context.go('/login/resetPassword');
+                          });
+
+                        },
+                        child: const Text('¿Olvidaste la contraseña?')
+                    )
                 ],
               )
             ],
@@ -236,31 +289,6 @@ class _DatosState extends State<Datos> {
   }
 }
 
-
-class ResetPassword extends StatefulWidget {
-  const ResetPassword({super.key});
-
-  @override
-  State<ResetPassword> createState() => _ResetPassword();
-}
-
-class _ResetPassword extends State<ResetPassword> {
-  @override
-  Widget build(BuildContext context) {
-
-    return Row(
-      children: [
-        const Spacer(),
-        TextButton(
-          onPressed: (){
-              context.go('/login/resetPassword');
-          },
-          child: const Text('¿Olvidaste la contraseña?')
-        )
-      ],
-    );
-  }
-}
 
 
 
