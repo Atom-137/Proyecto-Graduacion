@@ -25,7 +25,6 @@ class _RegistroNotasScreenState extends State<RegistroNotasScreen> {
     final query = QueryService();
     const form = 'registroCalificacion';
     bool editar = GoRouterState.of(context).extra != null;
-    Map<String, dynamic> dataEstudiante = {};
 
     if (!editar) {
       return Scaffold(
@@ -66,30 +65,30 @@ class _RegistroNotasScreenState extends State<RegistroNotasScreen> {
 
       //TODO mejorar la visualizacion de los datos
       return Scaffold(
-        appBar: AppBar(title: Text('Editar Calificacion')),
+        appBar: AppBar(title: const Text('Editar Calificacion')),
         body: Padding(
           padding: const EdgeInsets.only(left: 50.0, right: 50.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Editar Calificacion de "),
+              const Text("Editar Calificacion de "),
               Text(
                   dataEstudiante['nombreEstudiante'],
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   )
               ),
-              Text("Curso:"),
+              const Text("Curso:"),
               Text(
                   dataEstudiante['curso'],
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   )
               ),
-              Text("Bimestre:"),
+              const Text("Bimestre:"),
               Text(
                   dataEstudiante['bimestre'],
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   )
               ),
@@ -101,7 +100,7 @@ class _RegistroNotasScreenState extends State<RegistroNotasScreen> {
               ElevatedButton(
                   onPressed: () async {
 
-                    dataActualizar = {
+                      dataActualizar = {
                         'idCalificacion' : dataEstudiante['idCalificacion'].toString(),
                         'calificacion'   : notaActualizar
                       };
@@ -117,7 +116,7 @@ class _RegistroNotasScreenState extends State<RegistroNotasScreen> {
                         context.go('/verNotas');
                       }
                   },
-                  child: Text("Guardar Edicion")
+                  child: const Text("Guardar Edicion")
               )
             ],
           ),
