@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:app_notas_v2/shared/services/catalogos_service.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 
 class VerNotasBimestralesScreen extends StatefulWidget {
@@ -38,10 +41,10 @@ class _VerNotasBimestralesScreenState extends State<VerNotasBimestralesScreen> {
                 scrollDirection: Axis.vertical,
                 child: DataTable(
                   columns: const [
+                    DataColumn(label: Text('Estudiante')),
                     DataColumn(label: Text('Curso')),
                     DataColumn(label: Text('Calificacion')),
                     DataColumn(label: Text('Bimestre')),
-                    DataColumn(label: Text('Estudiante')),
                     DataColumn(label: Text('')),
                   ],
                   rows: items
@@ -50,11 +53,13 @@ class _VerNotasBimestralesScreenState extends State<VerNotasBimestralesScreen> {
 
                           return DataRow(
                             cells: [
-                              DataCell(Text(item['curso'].toString())),
-                              DataCell(Text(item['bimestre'])),
-                              DataCell(Text(item['calficacion'])),
                               DataCell(Text(item['nombreEstudiante'])),
-                              DataCell( IconButton(onPressed: (){}, icon: const Icon( Icons.edit)))
+                              DataCell(Text(item['curso'].toString())),
+                              DataCell(Text(item['calficacion'])),
+                              DataCell(Text(item['bimestre'])),
+                              DataCell( IconButton(onPressed: (){
+                                context.go('/regNotas',extra: jsonEncode(item));
+                              }, icon: const Icon( Icons.edit)))
                             ],
                           );
                         }

@@ -11,7 +11,7 @@ import 'package:go_router/go_router.dart';
 class MainRoute{
 
   static final GoRouter rutas = GoRouter(
-      initialLocation: '/login',
+      initialLocation: '/verNotas',
       routes: [
         GoRoute(
           path    : '/'  ,

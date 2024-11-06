@@ -19,6 +19,7 @@ class ElementformModel {
   TextInputType?          keyboarType;
   Function?               callback;
   int?                    maxLength;
+  String                  initialValue;
 
   ElementformModel({
     required this.name,
@@ -36,7 +37,8 @@ class ElementformModel {
     this.nomList = "nombres",
     this.keyboarType,
     this.callback,
-    this.maxLength
+    this.maxLength,
+    this.initialValue = ''
   });
 
   factory ElementformModel.fromRawJson(String str) => ElementformModel.fromJson(json.decode(str));
@@ -57,7 +59,8 @@ class ElementformModel {
       tipoEleForm    : json['tipoEleForm'],
       keyboarType    : json["keyboarType"],
       callback       : json["callback"],
-      maxLength      : json["maxLength"]
+      maxLength      : json["maxLength"],
+      initialValue   : json["initialValue"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -73,7 +76,8 @@ class ElementformModel {
     "obscureText"     : obscureText,
     "keyboarType"     : keyboarType,
     "callback"        : callback,
-    "maxLength"       : maxLength
+    "maxLength"       : maxLength,
+    "initialValue"    : initialValue
    };
 
 }
